@@ -2,9 +2,9 @@
   "name": "vork-web",
   "private": true,
   "license": "MIT",
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Blog page for Vork",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Martin Macháček <martin.mach.machacek@gmail.com>",
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
@@ -33,15 +33,5 @@
   },
   "devDependencies": {
     "prettier": "^1.19.1"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }

@@ -1,24 +1,33 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/Layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import Heading from "../components/Heading"
+import Section from "../components/Section"
 import Button from "../components/Button"
-
-//10:40
+import Text from "../components/Text"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Button>Click</Button>
-    <Link to="/page-2/">Go to page 2</Link>
+
+    <Section>
+      <Heading>Upgradujeme dobré týmy na skvělé</Heading>
+      <Text>
+        Zavádíme filosofii Leadership do týmů
+        <br />
+        Rozvíjíme jednotlivce a týmy
+        <br />
+        Spojujeme týmy s těmi pravými Ajťáky
+      </Text>
+      <Button>S čím pomáháme</Button>
+    </Section>
+    <Section narrow>
+      <Heading>Inspirujte se na našem bloku</Heading>
+    </Section>
+    <Section>
+      <Heading>A samozřejmě děkujeme našim partnerům</Heading>
+    </Section>
   </Layout>
 )
 

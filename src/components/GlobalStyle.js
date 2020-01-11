@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components"
+import { PRIMARY } from "../constants"
 
 // TODO import fonts
 const GlobalStyle = createGlobalStyle`
@@ -15,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     letter-spacing: 0.5px;
     font-family: 'Roboto', sans-serif;
+    color: ${PRIMARY}
   }
 `
 
