@@ -1,9 +1,16 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { FONT_SIZE } from "../constants"
 
 const Text = styled.p`
   margin-bottom: 6rem;
-  font-size: ${({ small }) => (small ? FONT_SIZE.BASIC : FONT_SIZE.TEXT)};
+  font-size: ${FONT_SIZE.TEXT};
+
+  ${({ small }) =>
+    small &&
+    css`
+      margin: 0;
+      font-size: ${FONT_SIZE.BASIC};
+    `}
 `
 
 export default Text

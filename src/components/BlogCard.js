@@ -36,7 +36,6 @@ const Wrapper = styled.div`
 
 const TitleImage = styled.img`
   height: 13rem;
-  /* width: 100%; */
   overflow: hidden;
 `
 
@@ -57,7 +56,7 @@ const CardHeading = styled.h3`
 const CardText = styled(Text)`
   position: relative;
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 
   &:after {
     content: "";

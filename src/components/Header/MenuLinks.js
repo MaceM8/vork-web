@@ -1,39 +1,9 @@
 import React from "react"
-import Link from "../Link"
-import styled from "styled-components"
 
-const LinkWrapper = styled.div`
-  margin: 1.5rem 2rem;
-`
+import MenuLink from "./MenuLink"
+import { MENU_LINKS } from "../../constants"
 
-const MenuLinks = () => (
-  <>
-    <LinkWrapper>
-      <Link withUnderline to="/">
-        Domů
-      </Link>
-    </LinkWrapper>
-    <LinkWrapper>
-      <Link withUnderline to="/pomahame">
-        S čím pomáháme
-      </Link>
-    </LinkWrapper>
-    <LinkWrapper>
-      <Link withUnderline to="/o-nas">
-        O nás
-      </Link>
-    </LinkWrapper>
-    <LinkWrapper>
-      <Link withUnderline to="/blog">
-        Blog
-      </Link>
-    </LinkWrapper>
-    <LinkWrapper>
-      <Link withUnderline to="/kontakt">
-        Kontakt
-      </Link>
-    </LinkWrapper>
-  </>
-)
+const MenuLinks = () =>
+  MENU_LINKS.map(({ to, children }) => <MenuLink to={to}>{children}</MenuLink>)
 
 export default MenuLinks

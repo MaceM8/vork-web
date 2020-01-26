@@ -25,3 +25,22 @@ export const FONT_SIZE = {
   TEXT: "24px",
   HEADING: "30px",
 }
+
+export const MENU_LINKS = [
+  { to: "/", children: "Domů" },
+  { to: "/pomahame", children: "S čím pomáháme" },
+  { to: "/o-nas", children: "O nás" },
+  { to: "/blog", children: "Blog" },
+  { to: "/kontakt", children: "Kontakt" },
+]
+
+export const USER_MEDAILON = {
+  TOM: {
+    photoUrl: "../images/gatsby-astronaut.png",
+    title: "Chceš se dozvědět více?",
+    text: "Ozvi se Tomášovi, rád se s tebou potká.",
+    linkedin: "",
+    mail: "tomas@vork.cz",
+    phone: "+420 111 222 333",
+  },
+}

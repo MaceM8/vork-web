@@ -1,21 +1,31 @@
 import React from "react"
 import styled, { css } from "styled-components"
-import { BEIGE, BLUE, BREAKPOINTS, WHITE } from "../constants"
+import { BEIGE, BREAKPOINTS, GREY4, BLUE, WHITE } from "../constants"
 
 const SectionWrapper = styled.section`
   background-color: ${BEIGE};
   display: flex;
   justify-content: center;
 
-  &:nth-child(even) {
-    background-color: ${BLUE};
-    color: ${WHITE};
-  }
+  ${({ dark }) =>
+    !dark &&
+    css`
+      &:nth-child(even) {
+        background-color: ${GREY4};
+      }
+    `}
 
   ${({ center }) =>
     center &&
     css`
       text-align: center;
+    `}
+
+  ${({ dark }) =>
+    dark &&
+    css`
+      background-color: ${BLUE};
+      color: ${WHITE};
     `}
 `
 

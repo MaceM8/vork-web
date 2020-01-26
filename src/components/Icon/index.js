@@ -2,26 +2,26 @@ import React from "react"
 import styled from "styled-components"
 import { oneOf, string } from "prop-types"
 
+import chevronRight from "./svgs/chevron-right.svg"
 import facebook from "./svgs/facebook.svg"
 import instagram from "./svgs/instagram.svg"
 import linkedin from "./svgs/linkedin.svg"
 import mail from "./svgs/mail.svg"
 import medium from "./svgs/medium.svg"
-import phone from "./svgs/phone.svg"
-import chevronRight from "./svgs/chevron-right.svg"
 import menu from "./svgs/menu.svg"
+import phone from "./svgs/phone.svg"
 import times from "./svgs/times.svg"
 
 // Add new icons here, logic and proptypes works automatically
 const icons = {
+  chevronRight,
   facebook,
   instagram,
   linkedin,
   mail,
   medium,
-  phone,
-  chevronRight,
   menu,
+  phone,
   times,
 }
 
