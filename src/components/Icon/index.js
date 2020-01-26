@@ -8,8 +8,9 @@ import linkedin from "./svgs/linkedin.svg"
 import mail from "./svgs/mail.svg"
 import medium from "./svgs/medium.svg"
 import phone from "./svgs/phone.svg"
-
-import { BLUE } from "../../constants"
+import chevronRight from "./svgs/chevron-right.svg"
+import menu from "./svgs/menu.svg"
+import times from "./svgs/times.svg"
 
 // Add new icons here, logic and proptypes works automatically
 const icons = {
@@ -19,11 +20,13 @@ const icons = {
   mail,
   medium,
   phone,
+  chevronRight,
+  menu,
+  times,
 }
 
 const renderIcon = (icon, color) => {
   const SelectedIcon = icons[icon] || icons.phone
-  console.log(icon, SelectedIcon)
 
   return <SelectedIcon color={color} />
 }

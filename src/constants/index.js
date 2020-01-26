@@ -19,3 +19,9 @@ export const BREAKPOINTS = {
 }
 
 export const BORDER_RADIUS = "7px"
+
+export const FONT_SIZE = {
+  BASIC: "14px",
+  TEXT: "24px",
+  HEADING: "30px",
+}

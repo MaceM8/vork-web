@@ -17,6 +17,8 @@ const Button = styled.button`
   transition: all ${TRANSITION_TIME};
   cursor: pointer;
   background-color: ${BEIGE};
+  color: ${BLUE};
+  font-size: 14px;
 
   ${hoverMedia`
     color: ${WHITE};

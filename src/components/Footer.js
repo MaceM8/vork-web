@@ -2,7 +2,14 @@ import React from "react"
 import styled from "styled-components"
 
 import Icon from "./Icon"
-import { GREY3, BLUE, BREAKPOINTS, WHITE, TRANSITION_TIME } from "../constants"
+import {
+  GREY3,
+  BLUE,
+  BREAKPOINTS,
+  WHITE,
+  TRANSITION_TIME,
+  PRIMARY,
+} from "../constants"
 
 const FooterWrapper = styled.footer`
   display: flex;
@@ -19,7 +26,7 @@ const FooterWrapper = styled.footer`
 const IconsWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 0.5rem 0;
+  margin: 2rem;
 
   & a {
     margin-right: 1.5rem;
@@ -71,6 +78,7 @@ const MenuLink = styled.a`
   text-align: center;
   text-decoration: none;
   padding-top: 0.7rem;
+  color: ${PRIMARY};
 
   ::after {
     position: absolute;

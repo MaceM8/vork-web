@@ -1,21 +1,19 @@
 import { createGlobalStyle } from "styled-components"
-import { PRIMARY } from "../constants"
 
-// TODO import fonts
+import { PRIMARY, FONT_SIZE } from "../constants"
+
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap'); 
-
   html {
     scroll-behavior: smooth;
     height: 100%;
-    font-size: 13px;
+    font-size: ${FONT_SIZE.BASIC};
   }
 
   body {
     margin: 0;
     height: 100%;
     letter-spacing: 0.5px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Avenir', sans-serif;
     color: ${PRIMARY}
   }
 `

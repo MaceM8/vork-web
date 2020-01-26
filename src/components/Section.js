@@ -1,15 +1,38 @@
+import React from "react"
 import styled, { css } from "styled-components"
-import { BEIGE } from "../constants"
+import { BEIGE, BLUE, BREAKPOINTS, WHITE } from "../constants"
 
-const Section = styled.section`
-  padding: 10rem 1rem;
+const SectionWrapper = styled.section`
   background-color: ${BEIGE};
+  display: flex;
+  justify-content: center;
 
-  ${({ narrow }) =>
-    narrow &&
+  &:nth-child(even) {
+    background-color: ${BLUE};
+    color: ${WHITE};
+  }
+
+  ${({ center }) =>
+    center &&
     css`
-      max-width: 40rem;
+      text-align: center;
     `}
 `
+
+const ContentWrapper = styled.div`
+  margin: 5rem 1.5rem;
+  width: 100%;
+  max-width: 910px;
+
+  @media (min-width: ${BREAKPOINTS.TABLET}) {
+    margin: 5rem 3rem;
+  }
+`
+
+const Section = ({ children, ...props }) => (
+  <SectionWrapper {...props}>
+    <ContentWrapper>{children}</ContentWrapper>
+  </SectionWrapper>
+)
 
 export default Section
