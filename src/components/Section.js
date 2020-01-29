@@ -1,6 +1,6 @@
 import React from "react"
 import styled, { css } from "styled-components"
-import { BEIGE, BREAKPOINTS, GREY4, BLUE, WHITE } from "../constants"
+import { BEIGE, BREAKPOINTS, GREY3, BLUE, WHITE } from "../constants"
 
 const SectionWrapper = styled.section`
   background-color: ${BEIGE};
@@ -11,7 +11,7 @@ const SectionWrapper = styled.section`
     !dark &&
     css`
       &:nth-child(even) {
-        background-color: ${GREY4};
+        background-color: ${GREY3};
       }
     `}
 
@@ -35,7 +35,7 @@ const ContentWrapper = styled.div`
   max-width: 910px;
 
   @media (min-width: ${BREAKPOINTS.TABLET}) {
-    margin: 5rem 3rem;
+    margin: 7rem 3rem;
   }
 `
 
