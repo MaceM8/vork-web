@@ -1,3 +1,5 @@
+import { graphql } from "gatsby"
+
 // COLOURS
 export const BLUE = "#0B004A"
 export const WHITE = "#FFFFFF"

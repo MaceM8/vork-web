@@ -8,22 +8,17 @@ import Button from "../components/Button"
 import Text from "../components/Text"
 import Link from "../components/Link"
 import BlogPostsSection from "../components/BlogPostsSection"
+import { graphql } from "gatsby"
 
-const IndexPage = () => (
+const IndexPage = ({ data: { strapiHomepage } }) => (
   <Layout>
     <SEO title="Home" />
 
     <Section>
-      <Heading>Upgradujeme dobré týmy na skvělé</Heading>
-      <Text>
-        Zavádíme filosofii Leadership do týmů
-        <br />
-        Rozvíjíme jednotlivce a týmy
-        <br />
-        Spojujeme týmy s těmi pravými Ajťáky
-      </Text>
-      <Link to="pomahame">
-        <Button>S čím pomáháme</Button>
+      <Heading>{strapiHomepage.title}</Heading>
+      <Text>{strapiHomepage.text}</Text>
+      <Link to={strapiHomepage.buttonLink}>
+        <Button>{strapiHomepage.buttonText}</Button>
       </Link>
     </Section>
     <BlogPostsSection
@@ -31,12 +26,26 @@ const IndexPage = () => (
       text="Dostat od někoho zkušeného radu je dar, který často ušetří drahocenný čas. Nejen proto sdílíme zkušenosti. Jak s nimi naložíte, je na Vás."
     />
     <Section center>
-      <Link to="o-nas">
-        <Button>Více o nás</Button>
+      <Link to={strapiHomepage.bottomButtonLink}>
+        <Button>{strapiHomepage.bottomButtonText}</Button>
       </Link>
-      <Heading>A samozřejmě děkujeme všem našim partnerům</Heading>
+      <Heading>{strapiHomepage.bottomText}</Heading>
     </Section>
   </Layout>
 )
 
 export default IndexPage
+
+export const pageQuery = graphql`
+  query HomepageQuery {
+    strapiHomepage {
+      title
+      text
+      buttonText
+      buttonLink
+      bottomText
+      bottomButtonText
+      bottomButtonLink
+    }
+  }
+`

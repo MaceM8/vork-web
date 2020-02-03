@@ -7,6 +7,7 @@ import Icon from "./Icon"
 
 const Wrapper = styled.div`
   display: flex;
+  align-items: center;
   padding: 3rem;
   background-color: ${WHITE};
   border-radius: ${BORDER_RADIUS};

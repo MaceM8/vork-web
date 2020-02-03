@@ -3,17 +3,20 @@ import styled from "styled-components"
 
 import Text from "./Text"
 import Icon from "./Icon"
-import Image from "./Image"
+import Image from "./RoundImage"
 import { PRIMARY, BREAKPOINTS } from "../constants"
 
 const Wrapper = styled.div`
   display: grid;
+  display: -ms-grid;
   grid-template-columns: 2fr 1fr;
+  -ms-grid-columns: 2fr 1fr;
   grid-gap: 0.5rem;
   align-items: center;
 
   @media (min-width: ${BREAKPOINTS.TABLET}) {
     grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-columns: 1fr 1fr 1fr;
     justify-items: center;
   }
 `
@@ -45,21 +48,22 @@ const LinksWrapper = styled.div`
 `
 
 const ConnectMedailon = ({
-  user: { linkedin, mail, name, phone, photoUrl, text, title },
+  user: { linkedin, email, name, phone, Picture, text, title },
 }) => (
   <Wrapper>
     <UserClaim>
       <UserClaimTitle>{title}</UserClaimTitle>
       <Text small>{text}</Text>
     </UserClaim>
-    <Image src={photoUrl} alt={name} />
+    {console.log("Picture", Picture)}
+    {/* <Image fixed={Picture.childImageSharp.fixed} alt={name} /> */}
     <LinksWrapper>
       <OutsideLink href={linkedin}>
         <Icon icon="linkedin" /> LinkedIn
       </OutsideLink>
-      <OutsideLink href={`mailto:${mail}`}>
-        <Icon icon="mail" />
-        {mail}
+      <OutsideLink href={`mailto:${email}`}>
+        <Icon icon="email" />
+        {email}
       </OutsideLink>
       <OutsideLink href={`tel:${phone}`}>
         <Icon icon="phone" />

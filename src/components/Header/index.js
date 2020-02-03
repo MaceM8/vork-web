@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { string } from "prop-types"
+import Img from "gatsby-image"
 
 import Link from "../Link"
 import { BREAKPOINTS, GREY1 } from "../../constants"
 import Icon from "../Icon"
 import MenuLinks from "./MenuLinks"
 import MobileMenu from "./MobileMenu"
+import { graphql } from "gatsby"
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -58,22 +60,22 @@ const DesktopMenuWrapper = styled.div`
   }
 `
 
-const Header = () => {
+const Header = ({ data }) => {
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false)
 
-  const onMenuClick = () => {
-    console.log("click", isMobileMenuVisible)
-    setMobileMenuVisible(true)
-  }
+  console.log("data", data)
 
   return (
     <HeaderWrapper id="header">
       <LogoWrapper>
-        <Logo>VORK</Logo>
+        <Logo to="/">
+          {/* <Img fixed={data ? data.file.childImageSharp.fixed : ""} /> */}
+          {/* <Img fixed={data} /> */}
+        </Logo>
         <Claim>Find your own way</Claim>
       </LogoWrapper>
       <MenuWrapper>
-        <MobileMenuWrapper onClick={onMenuClick}>
+        <MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
           <Icon icon="menu" />
         </MobileMenuWrapper>
         <DesktopMenuWrapper>
@@ -93,3 +95,18 @@ Header.propTypes = {
 }
 
 export default Header
+
+export const pageQuery = graphql`
+  query LogoQuery {
+    strapiLogo {
+      Alt
+      image {
+        childImageSharp {
+          fixed(width: 200, height: 125) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  }
+`

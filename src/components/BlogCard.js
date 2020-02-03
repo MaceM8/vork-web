@@ -14,6 +14,7 @@ import {
 } from "../constants"
 import hoverMedia from "../util/hover"
 import Icon from "./Icon"
+import { string } from "prop-types"
 
 const Wrapper = styled.div`
   display: flex;
@@ -74,7 +75,7 @@ const CardText = styled(Text)`
   }
 `
 
-const BlogCard = ({ imageSrc = image, title, text, link }) => (
+const BlogCard = ({ imageSrc = image, title, text, link = "" }) => (
   <Link to={link}>
     <Wrapper>
       <TitleImage src={imageSrc} alt="Obrázek článku" />
@@ -86,5 +87,12 @@ const BlogCard = ({ imageSrc = image, title, text, link }) => (
     </Wrapper>
   </Link>
 )
+
+BlogCard.propTypes = {
+  imageSrc: string,
+  title: string,
+  text: string,
+  link: string,
+}
 
 export default BlogCard

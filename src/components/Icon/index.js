@@ -6,7 +6,7 @@ import chevronRight from "./svgs/chevron-right.svg"
 import facebook from "./svgs/facebook.svg"
 import instagram from "./svgs/instagram.svg"
 import linkedin from "./svgs/linkedin.svg"
-import mail from "./svgs/mail.svg"
+import email from "./svgs/email.svg"
 import medium from "./svgs/medium.svg"
 import menu from "./svgs/menu.svg"
 import phone from "./svgs/phone.svg"
@@ -18,7 +18,7 @@ const icons = {
   facebook,
   instagram,
   linkedin,
-  mail,
+  email,
   medium,
   menu,
   phone,

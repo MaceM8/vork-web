@@ -7,40 +7,26 @@ import Section from "../components/Section"
 import Text from "../components/Text"
 import BlogPostsSection from "../components/BlogPostsSection"
 import ConnectMedailon from "../components/ConnectMedailon"
-import { USER_MEDAILON } from "../constants"
 import SimpleCard from "../components/SimpleCard"
+import { graphql } from "gatsby"
 
-const HelpingPage = () => (
+const HelpingPage = ({ data: { strapiPomahame } }) => (
   <Layout>
     <SEO title="Pomáháme" />
+    {console.log(strapiPomahame)}
 
     <Section>
-      <Heading>
-        Skvělý tým není postaven jen na schopnostech jednotlivců. A my to víme.
-      </Heading>
-      <Text>
-        Postrádáte angažované, odvážné, kooperující ajťáky?
-        <br />
-        Máte problém s vytvořením efektivně fungujícího týmu?
-        <br />
-        Chcete ty nejlepšlí lídry za kterými lidi přirozeně půjdou?
-      </Text>
+      <Heading>{strapiPomahame.title}</Heading>
+      <Text>{strapiPomahame.text}</Text>
     </Section>
     <Section>
-      <Heading>
-        My Vám s tím pomáháme. Od staffingu po vytváření synergických týmů.
-      </Heading>
-      <SimpleCard
-        heading="Pomáháme s výběrem správných lidí"
-        text="Podcenit výběr lidí je první chybou. Čas věnovaný dobrému výběru ušetří mnoho starostí a zvýší efektivitu vašeho týmu."
-      />
-      <SimpleCard
-        heading="Pomáháme s členům týmu osobnostně růst"
-        text="Sílu řetězu udává jeho nejslabší článek. Není lepší investice, než rozvíjet každého člena týmu. Tak roste i tým jako celek."
-      />
+      <Heading>{strapiPomahame.simpleBoxSectionHeading}</Heading>
+      {strapiPomahame.simple_cards.map(({ Title, Text }) => (
+        <SimpleCard key={Title} heading={Title} text={Text} />
+      ))}
     </Section>
     <Section>
-      <ConnectMedailon user={USER_MEDAILON.TOM} />
+      <ConnectMedailon user={strapiPomahame.user_contact} />
     </Section>
     <BlogPostsSection
       heading="Příběhy. Know-how. Stalo se"
@@ -50,3 +36,27 @@ const HelpingPage = () => (
 )
 
 export default HelpingPage
+
+export const pageQuery = graphql`
+  query PomahameQuery {
+    strapiPomahame {
+      title
+      text
+      simpleBoxSectionHeading
+      simple_cards {
+        Text
+        Title
+      }
+      user_contact {
+        title
+        text
+        linkedin
+        phone
+        email
+        Picture {
+          url
+        }
+      }
+    }
+  }
+`

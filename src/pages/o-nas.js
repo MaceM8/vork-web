@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
@@ -7,11 +8,27 @@ import Section from "../components/Section"
 import Text from "../components/Text"
 import SimpleCard from "../components/SimpleCard"
 import ConnectMedailon from "../components/ConnectMedailon"
-import { USER_MEDAILON } from "../constants"
+import { USER_MEDAILON, BREAKPOINTS } from "../constants"
+import { graphql } from "gatsby"
+import PeopleCard from "../components/PeopleCard"
 
-const AboutPage = () => (
+const PeopleWrapper = styled.div`
+  display: grid;
+  display: -ms-grid;
+  grid-template-columns: 1fr;
+  -ms-grid-columns: 1fr;
+  grid-gap: 2rem;
+
+  @media (min-width: ${BREAKPOINTS.TABLET}) {
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-columns: 1fr 1fr;
+  }
+`
+
+const AboutPage = ({ data: { allStrapiPeople } }) => (
   <Layout>
     <SEO title="O nás" />
+    {console.log("about", allStrapiPeople)}
 
     <Section>
       <Heading>
@@ -23,7 +40,15 @@ const AboutPage = () => (
       </Text>
     </Section>
     <Section>
-      <Heading>To jsme my</Heading>
+      <Heading center>To jsme my</Heading>
+      <PeopleWrapper>
+        {allStrapiPeople.edges.map(({ node }) => (
+          <PeopleCard key={node.name} person={node} />
+        ))}
+        <Heading center small>
+          + naše komunita IT specialistů
+        </Heading>
+      </PeopleWrapper>
     </Section>
     <Section>
       <SimpleCard
@@ -58,3 +83,28 @@ const AboutPage = () => (
 )
 
 export default AboutPage
+
+export const pageQuery = graphql`
+  query ONasQuery {
+    allStrapiPeople {
+      edges {
+        node {
+          name
+          about
+          picture {
+            childImageSharp {
+              fixed(width: 100, height: 100) {
+                base64
+                tracedSVG
+                aspectRatio
+                srcWebp
+                srcSetWebp
+                originalName
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

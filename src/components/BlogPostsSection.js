@@ -1,6 +1,6 @@
 import React from "react"
 
-import CardList from "./CardList"
+import CardList from "./BlogCardList"
 import Section from "./Section"
 import Heading from "./Heading"
 import Text from "./Text"

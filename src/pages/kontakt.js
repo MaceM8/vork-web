@@ -1,18 +1,18 @@
 import React from "react"
+import { graphql } from "gatsby"
 
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
-import Section from "../components/Section"
 import ConnectMedailon from "../components/ConnectMedailon"
-import { USER_MEDAILON } from "../constants"
 import Heading from "../components/Heading"
+import Layout from "../components/Layout"
+import Section from "../components/Section"
+import SEO from "../components/seo"
 
-const ContactPage = () => (
+const ContactPage = ({ data }) => (
   <Layout>
     <SEO title="Kontakt" />
 
     <Section>
-      <ConnectMedailon user={USER_MEDAILON.CONTACT} />
+      <ConnectMedailon user={data} />
     </Section>
     <Section>
       <Heading>Vork consulting s.r.o.</Heading>
@@ -21,3 +21,23 @@ const ContactPage = () => (
 )
 
 export default ContactPage
+
+export const pageQuery = graphql`
+  query UserContactQuery {
+    strapiUserContact {
+      id
+      title
+      text
+      linkedin
+      email
+      phone
+      Picture {
+        childImageSharp {
+          fixed(width: 100, height: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  }
+`
