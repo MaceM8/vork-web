@@ -3,19 +3,22 @@ import { graphql } from "gatsby"
 
 import ConnectMedailon from "../components/ConnectMedailon"
 import Heading from "../components/Heading"
-import Layout from "../components/Layout"
+import Layout from "../components/Layouts"
 import Section from "../components/Section"
 import SEO from "../components/seo"
+import Text from "../components/Text"
 
-const ContactPage = ({ data }) => (
+const ContactPage = ({ data: { strapiKontakt } }) => (
   <Layout>
     <SEO title="Kontakt" />
 
     <Section>
-      <ConnectMedailon user={data} />
+      <ConnectMedailon user={strapiKontakt.user_contact} />
     </Section>
-    <Section>
-      <Heading>Vork consulting s.r.o.</Heading>
+    <Section dark grow>
+      <Heading>{strapiKontakt.title}</Heading>
+      <Text smallMargin>{strapiKontakt.text}</Text>
+      <Text small>{strapiKontakt.smallText}</Text>
     </Section>
   </Layout>
 )
@@ -24,18 +27,18 @@ export default ContactPage
 
 export const pageQuery = graphql`
   query UserContactQuery {
-    strapiUserContact {
-      id
+    strapiKontakt {
       title
       text
-      linkedin
-      email
-      phone
-      Picture {
-        childImageSharp {
-          fixed(width: 100, height: 100) {
-            ...GatsbyImageSharpFixed
-          }
+      smallText
+      user_contact {
+        title
+        linkedin
+        email
+        text
+        phone
+        Picture {
+          url
         }
       }
     }

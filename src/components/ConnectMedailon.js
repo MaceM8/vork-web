@@ -4,7 +4,8 @@ import styled from "styled-components"
 import Text from "./Text"
 import Icon from "./Icon"
 import Image from "./RoundImage"
-import { PRIMARY, BREAKPOINTS } from "../constants"
+import { BREAKPOINTS, GREY1 } from "../constants"
+import ExternalLink from "./ExternalLink"
 
 const Wrapper = styled.div`
   display: grid;
@@ -18,18 +19,6 @@ const Wrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     -ms-grid-columns: 1fr 1fr 1fr;
     justify-items: center;
-  }
-`
-
-const OutsideLink = styled.a`
-  display: flex;
-  align-items: center;
-  margin: 0.2rem 0;
-  color: ${PRIMARY};
-  text-decoration: none;
-
-  div {
-    margin-right: 1rem;
   }
 `
 
@@ -55,20 +44,23 @@ const ConnectMedailon = ({
       <UserClaimTitle>{title}</UserClaimTitle>
       <Text small>{text}</Text>
     </UserClaim>
-    {console.log("Picture", Picture)}
-    {/* <Image fixed={Picture.childImageSharp.fixed} alt={name} /> */}
+    <Image
+      fixed={Picture.childImageSharp ? Picture.childImageSharp.fixed : null}
+      alt={name}
+      src={Picture.url ? `${process.env.GATSBY_API_URL}${Picture.url}` : null}
+    />
     <LinksWrapper>
-      <OutsideLink href={linkedin}>
-        <Icon icon="linkedin" /> LinkedIn
-      </OutsideLink>
-      <OutsideLink href={`mailto:${email}`}>
-        <Icon icon="email" />
+      <ExternalLink href={linkedin}>
+        <Icon icon="linkedin" color={GREY1} /> LinkedIn
+      </ExternalLink>
+      <ExternalLink href={`mailto:${email}`}>
+        <Icon icon="email" color={GREY1} />
         {email}
-      </OutsideLink>
-      <OutsideLink href={`tel:${phone}`}>
+      </ExternalLink>
+      <ExternalLink href={`tel:${phone}`} color={GREY1}>
         <Icon icon="phone" />
         {phone}
-      </OutsideLink>
+      </ExternalLink>
     </LinksWrapper>
   </Wrapper>
 )

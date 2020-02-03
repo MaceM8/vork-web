@@ -13,7 +13,6 @@ import { graphql } from "gatsby"
 const HelpingPage = ({ data: { strapiPomahame } }) => (
   <Layout>
     <SEO title="Pomáháme" />
-    {console.log(strapiPomahame)}
 
     <Section>
       <Heading>{strapiPomahame.title}</Heading>

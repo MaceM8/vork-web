@@ -16,16 +16,23 @@ const ImageComponent = styled(Img)`
   border-radius: 50%;
 `
 
-const RoundImage = ({ height, ...props }) => {
-  return (
-    <ImageWrapper height={height}>
-      <ImageComponent {...props}></ImageComponent>
-    </ImageWrapper>
-  )
-}
+const PlainImageComponent = styled.img`
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+`
+
+const RoundImage = ({ height, fixed, src, ...props }) => (
+  <ImageWrapper height={height}>
+    {fixed && <ImageComponent fixed={fixed} {...props}></ImageComponent>}
+    {src && <PlainImageComponent src={src} {...props} />}
+  </ImageWrapper>
+)
 
 RoundImage.propTypes = {
   height: string,
+  fixed: string,
+  url: string,
 }
 
 export default RoundImage

@@ -32,9 +32,10 @@ const renderIcon = (icon, color) => {
 }
 
 const IconWrapper = styled.div`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
   margin: 0;
+  fill: ${({ color }) => color};
 `
 
 const Icon = ({ icon, color, ...props }) => (

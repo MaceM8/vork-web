@@ -75,8 +75,8 @@ const CardText = styled(Text)`
   }
 `
 
-const BlogCard = ({ imageSrc = image, title, text, link = "" }) => (
-  <Link to={link}>
+const BlogCard = ({ imageSrc = image, title, text, link = "", ...props }) => (
+  <Link to={link} {...props}>
     <Wrapper>
       <TitleImage src={imageSrc} alt="Obrázek článku" />
       <CardContent>

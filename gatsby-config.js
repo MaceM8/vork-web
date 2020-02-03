@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Vork`,
@@ -17,7 +21,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: "http://localhost:1337",
+        apiURL: "http://35.158.124.157:1337", //process.env.GATSBY_API_URL,
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
           "user-contact",
@@ -26,10 +30,19 @@ module.exports = {
           "homepage",
           "pomahame",
           "people",
+          "o-nas",
+          "kontakt",
         ],
         queryLimit: 10,
       },
     },
+    // {
+    //   resolve: `gatsby-source-medium`,
+    //   options: {
+    //     username: `@tom.vodenka`,
+    //     limit: 3,
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

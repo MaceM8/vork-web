@@ -28,8 +28,8 @@ const DesktopChevron = styled(Icon)`
   }
 `
 
-const SimpleCard = ({ heading, text }) => (
-  <Wrapper>
+const SimpleCard = ({ heading, text, ...props }) => (
+  <Wrapper {...props}>
     <DesktopChevron icon="chevronRight" />
     <div>
       <Heading small>{heading}</Heading>

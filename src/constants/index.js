@@ -1,5 +1,3 @@
-import { graphql } from "gatsby"
-
 // COLOURS
 export const BLUE = "#0B004A"
 export const WHITE = "#FFFFFF"
@@ -32,7 +30,7 @@ export const MENU_LINKS = [
   { to: "/", children: "Domů" },
   { to: "/pomahame", children: "S čím pomáháme" },
   { to: "/o-nas", children: "O nás" },
-  { to: "/blog", children: "Blog" },
+  { href: "https://medium.com/@tom.vodenka", children: "Blog" },
   { to: "/kontakt", children: "Kontakt" },
 ]
 

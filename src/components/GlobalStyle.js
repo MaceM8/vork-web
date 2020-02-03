@@ -16,6 +16,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Avenir', sans-serif;
     color: ${PRIMARY}
   }
+
+  #gatsby-focus-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 `
 
 export default GlobalStyle

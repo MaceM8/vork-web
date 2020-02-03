@@ -8,6 +8,9 @@ import GlobalStyle from "./GlobalStyle"
 
 const ContentWrapper = styled.main`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
 `
 
 const Layout = ({ children }) => (

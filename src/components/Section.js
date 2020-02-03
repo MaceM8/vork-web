@@ -27,6 +27,13 @@ const SectionWrapper = styled.section`
       background-color: ${BLUE};
       color: ${WHITE};
     `}
+
+    ${({ grow }) =>
+      grow &&
+      css`
+        flex: 1 1 auto;
+        align-items: center;
+      `}
 `
 
 const ContentWrapper = styled.div`

@@ -1,18 +1,18 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { string } from "prop-types"
 import Img from "gatsby-image"
 
 import Link from "../Link"
-import { BREAKPOINTS, GREY1 } from "../../constants"
+import { BREAKPOINTS } from "../../constants"
 import Icon from "../Icon"
 import MenuLinks from "./MenuLinks"
 import MobileMenu from "./MobileMenu"
-import { graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 
 const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   min-height: 5rem;
   padding: 0 1rem;
   position: relative;
@@ -20,24 +20,11 @@ const HeaderWrapper = styled.header`
 `
 
 const Logo = styled(Link)`
-  margin: 0 2rem;
-  letter-spacing: 7px;
-  font-size: 24px;
-  font-weight: bold;
-`
-
-const Claim = styled.div`
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: ${GREY1};
-`
-
-const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
+  align-items: center;
+  margin: 0 1rem;
 `
-
-const MenuWrapper = styled.div``
 
 const MobileMenuWrapper = styled.div`
   display: flex;
@@ -60,28 +47,39 @@ const DesktopMenuWrapper = styled.div`
   }
 `
 
-const Header = ({ data }) => {
+const Header = () => {
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false)
-
-  console.log("data", data)
+  const { strapiLogo } = useStaticQuery(
+    graphql`
+      query {
+        strapiLogo {
+          Alt
+          image {
+            childImageSharp {
+              fixed(width: 185, height: 50) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+        }
+      }
+    `
+  )
 
   return (
     <HeaderWrapper id="header">
-      <LogoWrapper>
-        <Logo to="/">
-          {/* <Img fixed={data ? data.file.childImageSharp.fixed : ""} /> */}
-          {/* <Img fixed={data} /> */}
-        </Logo>
-        <Claim>Find your own way</Claim>
-      </LogoWrapper>
-      <MenuWrapper>
-        <MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
-          <Icon icon="menu" />
-        </MobileMenuWrapper>
-        <DesktopMenuWrapper>
-          <MenuLinks />
-        </DesktopMenuWrapper>
-      </MenuWrapper>
+      <Logo to="/">
+        <Img
+          fixed={strapiLogo.image.childImageSharp.fixed}
+          alt={strapiLogo.Alt}
+        />
+      </Logo>
+      <MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
+        <Icon icon="menu" />
+      </MobileMenuWrapper>
+      <DesktopMenuWrapper>
+        <MenuLinks />
+      </DesktopMenuWrapper>
       <MobileMenu
         isOpened={isMobileMenuVisible}
         onClose={() => setMobileMenuVisible(false)}
@@ -90,23 +88,4 @@ const Header = ({ data }) => {
   )
 }
 
-Header.propTypes = {
-  siteTitle: string,
-}
-
 export default Header
-
-export const pageQuery = graphql`
-  query LogoQuery {
-    strapiLogo {
-      Alt
-      image {
-        childImageSharp {
-          fixed(width: 200, height: 125) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  }
-`

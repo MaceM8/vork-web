@@ -1,14 +1,14 @@
 import React from "react"
 import styled from "styled-components"
 
-import Layout from "../components/Layout"
+import Layout from "../components/Layouts"
 import SEO from "../components/seo"
 import Heading from "../components/Heading"
 import Section from "../components/Section"
 import Text from "../components/Text"
 import SimpleCard from "../components/SimpleCard"
 import ConnectMedailon from "../components/ConnectMedailon"
-import { USER_MEDAILON, BREAKPOINTS } from "../constants"
+import { BREAKPOINTS } from "../constants"
 import { graphql } from "gatsby"
 import PeopleCard from "../components/PeopleCard"
 
@@ -25,22 +25,16 @@ const PeopleWrapper = styled.div`
   }
 `
 
-const AboutPage = ({ data: { allStrapiPeople } }) => (
+const AboutPage = ({ data: { allStrapiPeople, strapiONas } }) => (
   <Layout>
     <SEO title="O nás" />
-    {console.log("about", allStrapiPeople)}
 
     <Section>
-      <Heading>
-        Nedělá-li člověk to, co miluje, pak musí milovat to, co dělá.
-      </Heading>
-      <Text>
-        Milujeme to, co děláme a nakazíme i Vás. Pomáháme týmum k dosažení
-        unikátních výsledků. Propojujeme správné lidi se skvělými týmy.
-      </Text>
+      <Heading>{strapiONas.title}</Heading>
+      <Text>{strapiONas.text}</Text>
     </Section>
     <Section>
-      <Heading center>To jsme my</Heading>
+      <Heading center>{strapiONas.ThisIsUsTitle}</Heading>
       <PeopleWrapper>
         {allStrapiPeople.edges.map(({ node }) => (
           <PeopleCard key={node.name} person={node} />
@@ -51,33 +45,16 @@ const AboutPage = ({ data: { allStrapiPeople } }) => (
       </PeopleWrapper>
     </Section>
     <Section>
-      <SimpleCard
-        heading="Respektujeme odlišnosti druhých"
-        text="Podcenit výběr lidí je první chybou. Čas věnovaný dobrému výběru ušetří mnoho starostí a zvýší efektivitu vašeho týmu."
-      />
-      <SimpleCard
-        heading="Důvěřujeme každému"
-        text="Sílu řetězu udává jeho nejslabší článek. Není lepší investice, než rozvíjet každého člena týmu. Tak roste i tým jako celek."
-      />
-      <SimpleCard
-        heading="Komunikujeme s lidmi, ne o lidech"
-        text="Sílu řetězu udává jeho nejslabší článek. Není lepší investice, než rozvíjet každého člena týmu. Tak roste i tým jako celek."
-      />
-      <SimpleCard
-        heading="Pomáháme si"
-        text="Sílu řetězu udává jeho nejslabší článek. Není lepší investice, než rozvíjet každého člena týmu. Tak roste i tým jako celek."
-      />
+      {strapiONas.simple_cards.map(({ Title, Text }) => (
+        <SimpleCard key={Title} heading={Title} text={Text} />
+      ))}
     </Section>
     <Section>
-      <Heading>Kde se můžeme potkat?</Heading>
-      <Text>
-        Nejsme žádní autoři bestsellerů. Zajímavé lidi rádi poznáváme osobně.
-        Nehrajeme si na žádné formality. Potkejte se s námi u piva, sportu, nebo
-        jiné akci.
-      </Text>
+      <Heading>{strapiONas.whereCanYouFindUsTitle}</Heading>
+      <Text>{strapiONas.whereCanYouFindUsText}</Text>
     </Section>
     <Section>
-      <ConnectMedailon user={USER_MEDAILON.ANDY} />
+      <ConnectMedailon user={strapiONas.user_contact} />
     </Section>
   </Layout>
 )
@@ -103,6 +80,27 @@ export const pageQuery = graphql`
               }
             }
           }
+        }
+      }
+    }
+    strapiONas {
+      title
+      text
+      whereCanYouFindUsTitle
+      whereCanYouFindUsText
+      ThisIsUsTitle
+      simple_cards {
+        Title
+        Text
+      }
+      user_contact {
+        title
+        text
+        email
+        linkedin
+        phone
+        Picture {
+          url
         }
       }
     }
