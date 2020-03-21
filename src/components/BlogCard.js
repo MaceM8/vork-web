@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import Text from "./Text"
 import Link from "./Link"
+import ExternalLink from "./ExternalLink"
 import image from "../images/gatsby-astronaut.png"
 
 import {
@@ -75,24 +76,36 @@ const CardText = styled(Text)`
   }
 `
 
-const BlogCard = ({ imageSrc = image, title, text, link = "", ...props }) => (
-  <Link to={link} {...props}>
-    <Wrapper>
-      <TitleImage src={imageSrc} alt="Obrázek článku" />
-      <CardContent>
-        <CardHeading>{title}</CardHeading>
-        <CardText small>{text}</CardText>
-        <Icon icon="chevronRight" />
-      </CardContent>
-    </Wrapper>
-  </Link>
-)
+const BlogCard = ({
+  imageSrc = image,
+  title,
+  text,
+  link = "",
+  href,
+  ...props
+}) => {
+  const LinkComponent = href ? ExternalLink : Link
+
+  return (
+    <LinkComponent to={link} href={href} {...props}>
+      <Wrapper>
+        <TitleImage src={imageSrc} alt="Obrázek článku" />
+        <CardContent>
+          <CardHeading>{title}</CardHeading>
+          <CardText small>{text}</CardText>
+          <Icon icon="chevronRight" />
+        </CardContent>
+      </Wrapper>
+    </LinkComponent>
+  )
+}
 
 BlogCard.propTypes = {
   imageSrc: string,
   title: string,
   text: string,
   link: string,
+  href: string,
 }
 
 export default BlogCard

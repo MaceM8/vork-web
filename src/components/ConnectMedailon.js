@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   -ms-grid-columns: 2fr 1fr;
   grid-gap: 0.5rem;
   align-items: center;
+  margin-bottom: 2rem;
 
   @media (min-width: ${BREAKPOINTS.TABLET}) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -34,35 +35,48 @@ const UserClaimTitle = styled.h3`
 const LinksWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  width: fill-available;
+  padding-left: 2rem;
 `
 
 const ConnectMedailon = ({
-  user: { linkedin, email, name, phone, Picture, text, title },
-}) => (
-  <Wrapper>
-    <UserClaim>
-      <UserClaimTitle>{title}</UserClaimTitle>
-      <Text small>{text}</Text>
-    </UserClaim>
-    <Image
-      fixed={Picture.childImageSharp ? Picture.childImageSharp.fixed : null}
-      alt={name}
-      src={Picture.url ? `${process.env.GATSBY_API_URL}${Picture.url}` : null}
-    />
-    <LinksWrapper>
-      <ExternalLink href={linkedin}>
-        <Icon icon="linkedin" color={GREY1} /> LinkedIn
-      </ExternalLink>
-      <ExternalLink href={`mailto:${email}`}>
-        <Icon icon="email" color={GREY1} />
-        {email}
-      </ExternalLink>
-      <ExternalLink href={`tel:${phone}`} color={GREY1}>
-        <Icon icon="phone" />
-        {phone}
-      </ExternalLink>
-    </LinksWrapper>
-  </Wrapper>
-)
+  user: { linkedin, email, name, phone, Picture = {}, text, title },
+
+  ...otherProps
+}) => {
+  if (!title) {
+    return null
+  }
+
+  return (
+    <Wrapper {...otherProps}>
+      <UserClaim>
+        <UserClaimTitle>{title}</UserClaimTitle>
+        <Text small>{text}</Text>
+      </UserClaim>
+      <Image
+        fixed={Picture.childImageSharp ? Picture.childImageSharp.fixed : null}
+        alt={name}
+        src={Picture.url ? `${process.env.GATSBY_API_URL}${Picture.url}` : null}
+      />
+      <LinksWrapper>
+        {linkedin && (
+          <ExternalLink href={linkedin}>
+            <Icon icon="linkedin" color={GREY1} /> LinkedIn
+          </ExternalLink>
+        )}
+        <ExternalLink href={`mailto:${email}`}>
+          <Icon icon="email" color={GREY1} />
+          {email}
+        </ExternalLink>
+        <ExternalLink href={`tel:${phone}`} color={GREY1}>
+          <Icon icon="phone" />
+          {phone}
+        </ExternalLink>
+      </LinksWrapper>
+    </Wrapper>
+  )
+}
 
 export default ConnectMedailon

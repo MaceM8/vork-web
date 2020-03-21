@@ -6,7 +6,7 @@ import Heading from "../components/Heading"
 import Section from "../components/Section"
 import Text from "../components/Text"
 import BlogPostsSection from "../components/BlogPostsSection"
-import ConnectMedailon from "../components/ConnectMedailon"
+// import ConnectMedailon from "../components/ConnectMedailon"
 import SimpleCard from "../components/SimpleCard"
 import { graphql } from "gatsby"
 
@@ -24,12 +24,15 @@ const HelpingPage = ({ data: { strapiPomahame } }) => (
         <SimpleCard key={Title} heading={Title} text={Text} />
       ))}
     </Section>
-    <Section>
+    {/* <Section>
       <ConnectMedailon user={strapiPomahame.user_contact} />
-    </Section>
+    </Section> */}
     <BlogPostsSection
-      heading="Příběhy. Know-how. Stalo se"
-      text="Kdo ví, kam jde, nemůže se ztratit. V našich článcích sdílíme naše cesty, zkušenosti, pokusy a omyly. Třeba Vám pomohou nalézt i Vaši cestu."
+      heading={strapiPomahame.blogPostHeading || "Příběhy. Know-how. Stalo se."}
+      text={
+        strapiPomahame.blogPostHeading ||
+        "Kdo ví, kam jde, nemůže se ztratit. V našich článcích sdílíme naše cesty, zkušenosti, pokusy a omyly. Třeba Vám pomohou nalézt i Vaši cestu."
+      }
     />
   </Layout>
 )
@@ -46,16 +49,16 @@ export const pageQuery = graphql`
         Text
         Title
       }
-      user_contact {
-        title
-        text
-        linkedin
-        phone
-        email
-        Picture {
-          url
-        }
-      }
+      # user_contact {
+      #   title
+      #   text
+      #   linkedin
+      #   phone
+      #   email
+      #   Picture {
+      #     url
+      #   }
+      # }
     }
   }
 `

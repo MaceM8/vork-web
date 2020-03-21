@@ -1,11 +1,11 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${process.env.NODE_ENV || "development"}`,
 })
 
 module.exports = {
   siteMetadata: {
     title: `Vork`,
-    description: `Wbové stránky Vorku`,
+    description: `Webové stránky Vorku`,
     author: `Martin Macháček`,
   },
   plugins: [
@@ -22,6 +22,7 @@ module.exports = {
       resolve: "gatsby-source-strapi",
       options: {
         apiURL: "http://35.158.124.157:1337", //process.env.GATSBY_API_URL,
+        // apiURL: process.env.GATSBY_API_URL,
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
           "user-contact",
@@ -63,6 +64,12 @@ module.exports = {
         rule: {
           include: /\.svg$/,
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ["GATSBY_API_URL"],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

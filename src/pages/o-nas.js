@@ -1,16 +1,24 @@
 import React from "react"
 import styled from "styled-components"
 
-import Layout from "../components/Layouts"
+import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import Heading from "../components/Heading"
 import Section from "../components/Section"
 import Text from "../components/Text"
 import SimpleCard from "../components/SimpleCard"
-import ConnectMedailon from "../components/ConnectMedailon"
+// import ConnectMedailon from "../components/ConnectMedailon"
 import { BREAKPOINTS } from "../constants"
 import { graphql } from "gatsby"
 import PeopleCard from "../components/PeopleCard"
+
+import photos1 from "../images/photos1.png"
+import photos2 from "../images/photos2.png"
+import photos3 from "../images/photos3.png"
+
+const ImageWrapper = styled.img`
+  width: 100%;
+`
 
 const PeopleWrapper = styled.div`
   display: grid;
@@ -52,10 +60,14 @@ const AboutPage = ({ data: { allStrapiPeople, strapiONas } }) => (
     <Section>
       <Heading>{strapiONas.whereCanYouFindUsTitle}</Heading>
       <Text>{strapiONas.whereCanYouFindUsText}</Text>
+
+      <ImageWrapper alt="Naše akce" src={photos1} />
+      <ImageWrapper alt="Naše akce" src={photos2} />
+      <ImageWrapper alt="Naše akce" src={photos3} />
     </Section>
-    <Section>
+    {/* <Section>
       <ConnectMedailon user={strapiONas.user_contact} />
-    </Section>
+    </Section> */}
   </Layout>
 )
 

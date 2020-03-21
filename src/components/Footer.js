@@ -102,13 +102,13 @@ const Footer = () => (
       <a href="https://medium.com/">
         <FooterIcon icon="medium" />
       </a>
-      <a href="https://www.linkedin.com/">
+      <a href="https://www.linkedin.com/company/vork-consulting">
         <FooterIcon icon="linkedin" />
       </a>
-      <a href="https://www.linkedin.com/">
+      <a href="https://instagram.com/vork_cz?igshid=elrmleoleau9">
         <FooterIcon icon="instagram" />
       </a>
-      <a href="https://medium.com/">
+      <a href="https://www.facebook.com/1320192124779301/">
         <FooterIcon icon="facebook" />
       </a>
     </IconsWrapper>

@@ -7,18 +7,13 @@ import Text from "./Text"
 
 const cards = [
   {
-    title: "Card title",
+    title: "Jak z výjimečné firmy udělat průměrnou?",
     text:
-      "Blog post text that is slightly longer than title. Blog post text that is slightly longer than title. Blog post text that is slightly longer than title. Blog post text that is slightly longer than title. Blog post text that is slightly longer than title. Blog post text that is slightly longer than title. Blog post text that is slightly longer than title.",
-  },
-  {
-    title: "Second card title",
-    text: "Blog post text that is slightly longer than title.",
-  },
-  {
-    title: "Long third card title that doesn't fin on one line",
-    text:
-      "Blog post text that is slightly longer than title, but not that musch so that its not too long.",
+      "Každá větší firma si tím prošla. Majitel založí firmu se zajímavou, výjimečnou myšlenkou a vytváří “zdravou” firemní kulturu. Zprvu se všichni uvnitř firmy znají, tvoří komunitu lidí se stejnými cíli.",
+    imageSrc:
+      "https://miro.medium.com/max/1496/1*gxcusr3GoNQ8Gur1Nweolw@2x.jpeg",
+    href:
+      "https://medium.com/@tom.vodenka/jak-z-v%C3%BDjime%C4%8Dn%C3%A9-firmy-ud%C4%9Blat-pr%C5%AFm%C4%9Brnou-8d6319171262",
   },
 ]
 
