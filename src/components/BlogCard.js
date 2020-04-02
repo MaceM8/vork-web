@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Text from "./Text"
 import Link from "./Link"
 import ExternalLink from "./ExternalLink"
-import image from "../images/gatsby-astronaut.png"
+import image from "../assets/images/gatsby-astronaut.png"
 
 import {
   TRANSITION_TIME,

@@ -36,7 +36,7 @@ export const MENU_LINKS = [
 
 export const USER_MEDAILON = {
   TOM: {
-    photoUrl: "../images/gatsby-astronaut.png",
+    photoUrl: "../assets/images/gatsby-astronaut.png",
     title: "Chceš se dozvědět více?",
     text: "Ozvi se Tomášovi, rád se s tebou potká.",
     linkedin: "",
@@ -44,7 +44,7 @@ export const USER_MEDAILON = {
     phone: "+420 724 716 649",
   },
   ANDY: {
-    photoUrl: "../images/gatsby-astronaut.png",
+    photoUrl: "../assets/images/gatsby-astronaut.png",
     title: "Chceš se s námi spojit?",
     text: "Ozvi se Andy, ráda se s tebou potká.",
     linkedin: "",
@@ -52,7 +52,7 @@ export const USER_MEDAILON = {
     phone: "+420 721 824 455",
   },
   CONTACT: {
-    photoUrl: "../images/gatsby-astronaut.png",
+    photoUrl: "../assets/images/gatsby-astronaut.png",
     title: "Ozvi se s čímkoliv",
     text: "kontaktuj Andy, ráda se s tebou potká.",
     linkedin: "",

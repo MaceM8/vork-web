@@ -12,9 +12,9 @@ import { BREAKPOINTS } from "../constants"
 import { graphql } from "gatsby"
 import PeopleCard from "../components/PeopleCard"
 
-import photos1 from "../images/photos1.png"
-import photos2 from "../images/photos2.png"
-import photos3 from "../images/photos3.png"
+import photos1 from "../assets/images/photos1.png"
+import photos2 from "../assets/images/photos2.png"
+import photos3 from "../assets/images/photos3.png"
 
 const ImageWrapper = styled.img`
   width: 100%;
