@@ -25,13 +25,26 @@ const PeopleWrapper = styled.div`
   display: -ms-grid;
   grid-template-columns: 1fr;
   -ms-grid-columns: 1fr;
-  grid-gap: 2rem;
+  grid-gap: 3rem 2rem;
 
   @media (min-width: ${BREAKPOINTS.TABLET}) {
     grid-template-columns: 1fr 1fr;
     -ms-grid-columns: 1fr 1fr;
   }
 `
+
+const findCardByTitleContains = (simpleCards, text) =>
+  simpleCards.find(({ Title }) => Title.includes(text))
+
+// TODO: Delete this shit after CMS supports ordering
+const getSortedSimpleCards = simpleCards => {
+  return [
+    findCardByTitleContains(simpleCards, "Respektujeme"),
+    findCardByTitleContains(simpleCards, "Komunikujeme"),
+    findCardByTitleContains(simpleCards, "Pomáháme"),
+    findCardByTitleContains(simpleCards, "Důvěřujeme"),
+  ]
+}
 
 const AboutPage = ({ data: { allStrapiPeople, strapiONas } }) => (
   <Layout>
@@ -52,8 +65,8 @@ const AboutPage = ({ data: { allStrapiPeople, strapiONas } }) => (
         </Heading>
       </PeopleWrapper>
     </Section>
-    <Section>
-      {strapiONas.simple_cards.map(({ Title, Text }) => (
+    <Section dark>
+      {getSortedSimpleCards(strapiONas.simple_cards).map(({ Title, Text }) => (
         <SimpleCard key={Title} heading={Title} text={Text} />
       ))}
     </Section>
@@ -75,7 +88,7 @@ export default AboutPage
 
 export const pageQuery = graphql`
   query ONasQuery {
-    allStrapiPeople {
+    allStrapiPeople(sort: { fields: updated_at, order: DESC }) {
       edges {
         node {
           name
@@ -86,8 +99,8 @@ export const pageQuery = graphql`
                 base64
                 tracedSVG
                 aspectRatio
-                srcWebp
-                srcSetWebp
+                src
+                srcSet
                 originalName
               }
             }

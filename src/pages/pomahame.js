@@ -16,7 +16,17 @@ const HelpingPage = ({ data: { strapiPomahame } }) => (
 
     <Section>
       <Heading>{strapiPomahame.title}</Heading>
-      <Text>{strapiPomahame.text}</Text>
+      {/* TODO: Text should be with page breaks */}
+      {/* <Text>{strapiPomahame.text}</Text> */}
+      <Text>
+        Hledáte zajímavý projekt?
+        <br />
+        Postrádáte v týmu angažované a kooperující IT profíky?
+        <br />
+        Potřebujete postavit projekt od A do Z?
+        <br />
+        Chcete zefektivnit práci týmu či jednotlivců?
+      </Text>
     </Section>
     <Section>
       <Heading>{strapiPomahame.simpleBoxSectionHeading}</Heading>

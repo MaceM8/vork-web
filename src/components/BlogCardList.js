@@ -10,8 +10,8 @@ const ListWrapper = styled.div`
 
 const CardList = ({ cards }) => (
   <ListWrapper>
-    {cards.map(props => (
-      <BlogCard {...props} />
+    {cards.map((props, index) => (
+      <BlogCard key={index} {...props} />
     ))}
   </ListWrapper>
 )

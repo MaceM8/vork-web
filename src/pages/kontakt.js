@@ -36,8 +36,8 @@ const ContactPage = ({ data: { strapiKontakt, allStrapiUserContact } }) => (
     <Section>
       <ContentSpaceDivider>
         <Heading>Hledáte zajímavý projekt?</Heading>
-        {getProjectContacts(allStrapiUserContact).map(contact => (
-          <ConnectMedailon user={contact.node} />
+        {getProjectContacts(allStrapiUserContact).map((contact, index) => (
+          <ConnectMedailon key={index} user={contact.node} />
         ))}
       </ContentSpaceDivider>
 
@@ -45,14 +45,14 @@ const ContactPage = ({ data: { strapiKontakt, allStrapiUserContact } }) => (
         <Heading>
           Hledáte do týmu IT profíky nebo potřebujete postavit řešení od A do Z?
         </Heading>
-        {getPeopleContacts(allStrapiUserContact).map(contact => (
-          <ConnectMedailon user={contact.node} />
+        {getPeopleContacts(allStrapiUserContact).map((contact, index) => (
+          <ConnectMedailon key={index} user={contact.node} />
         ))}
       </ContentSpaceDivider>
 
       <Heading>Potřebujete zefektivnit práci týmu či jednotlivců?</Heading>
-      {getEffectivityContacts(allStrapiUserContact).map(contact => (
-        <ConnectMedailon user={contact.node} />
+      {getEffectivityContacts(allStrapiUserContact).map((contact, index) => (
+        <ConnectMedailon key={index} user={contact.node} />
       ))}
     </Section>
     <Section dark grow>
@@ -88,8 +88,8 @@ export const pageQuery = graphql`
                 base64
                 tracedSVG
                 aspectRatio
-                srcWebp
-                srcSetWebp
+                src
+                srcSet
                 originalName
               }
             }

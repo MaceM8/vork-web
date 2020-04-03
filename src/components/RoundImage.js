@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Img from "gatsby-image"
-import { string } from "prop-types"
+import { string, object } from "prop-types"
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const RoundImage = ({ height, fixed, src, ...props }) => (
 
 RoundImage.propTypes = {
   height: string,
-  fixed: string,
+  fixed: object, // Object shape from Strapi
   url: string,
 }
 

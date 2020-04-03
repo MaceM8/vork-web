@@ -35,9 +35,13 @@ const UserClaimTitle = styled.h3`
 const LinksWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
+  grid-column: 1 / 3;
   width: fill-available;
-  padding-left: 2rem;
+
+  @media (min-width: ${BREAKPOINTS.TABLET}) {
+    padding-left: 2rem;
+    grid-column: inherit;
+  }
 `
 
 const ConnectMedailon = ({

@@ -9,7 +9,7 @@ import Button from "../components/Button"
 import Text from "../components/Text"
 import Link from "../components/Link"
 import BlogPostsSection from "../components/BlogPostsSection"
-import Customers from "../components/Customers"
+// import Customers from "../components/Customers"
 
 const IndexPage = ({ data: { strapiHomepage } }) => (
   <Layout>
@@ -34,7 +34,8 @@ const IndexPage = ({ data: { strapiHomepage } }) => (
         <Button>{strapiHomepage.bottomButtonText}</Button>
       </Link>
       <Heading>{strapiHomepage.bottomText}</Heading>
-      <Customers />
+      {/* Uncomment after partners give consent */}
+      {/* <Customers /> */}
     </Section>
   </Layout>
 )

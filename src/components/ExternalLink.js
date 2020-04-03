@@ -1,8 +1,10 @@
+import React from "react"
 import styled from "styled-components"
+
 import { PRIMARY, TRANSITION_TIME } from "../constants"
 import hoverMedia from "../util/hover"
 
-const ExternalLink = styled.a`
+const StyledAnchor = styled.a`
   position: relative;
   display: flex;
   align-items: center;
@@ -35,5 +37,9 @@ const ExternalLink = styled.a`
     }
   `}
 `
+
+const ExternalLink = props => (
+  <StyledAnchor target="_blank" rel="noopener noreferrer" {...props} />
+)
 
 export default ExternalLink

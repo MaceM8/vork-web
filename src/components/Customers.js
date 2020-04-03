@@ -51,8 +51,8 @@ const ImageWrapper = styled.img`
 
 const Customers = () => (
   <ImagesGrid>
-    {partnerList.map(partner => (
-      <ImageWrapper src={partner} />
+    {partnerList.map((partner, index) => (
+      <ImageWrapper key={index} src={partner} />
     ))}
   </ImagesGrid>
 )
