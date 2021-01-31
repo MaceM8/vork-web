@@ -86,48 +86,48 @@ const AboutPage = ({ data: { allStrapiPeople, strapiONas } }) => (
 
 export default AboutPage
 
-export const pageQuery = graphql`
-  query ONasQuery {
-    allStrapiPeople(sort: { fields: updated_at, order: DESC }) {
-      edges {
-        node {
-          name
-          about
-          picture {
-            childImageSharp {
-              fixed(width: 100, height: 100) {
-                base64
-                tracedSVG
-                aspectRatio
-                src
-                srcSet
-                originalName
-              }
-            }
-          }
-        }
-      }
-    }
-    strapiONas {
-      title
-      text
-      whereCanYouFindUsTitle
-      whereCanYouFindUsText
-      ThisIsUsTitle
-      simple_cards {
-        Title
-        Text
-      }
-      user_contact {
-        title
-        text
-        email
-        linkedin
-        phone
-        Picture {
-          url
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query ONasQuery {
+//     allStrapiPeople(sort: { fields: updated_at, order: DESC }) {
+//       edges {
+//         node {
+//           name
+//           about
+//           picture {
+//             childImageSharp {
+//               fixed(width: 100, height: 100) {
+//                 base64
+//                 tracedSVG
+//                 aspectRatio
+//                 src
+//                 srcSet
+//                 originalName
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//     strapiONas {
+//       title
+//       text
+//       whereCanYouFindUsTitle
+//       whereCanYouFindUsText
+//       ThisIsUsTitle
+//       simple_cards {
+//         Title
+//         Text
+//       }
+//       user_contact {
+//         title
+//         text
+//         email
+//         linkedin
+//         phone
+//         Picture {
+//           url
+//         }
+//       }
+//     }
+//   }
+// `

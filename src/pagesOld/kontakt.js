@@ -67,35 +67,35 @@ const ContactPage = ({ data: { strapiKontakt, allStrapiUserContact } }) => (
 
 export default ContactPage
 
-export const pageQuery = graphql`
-  query UserContactQuery {
-    strapiKontakt {
-      title
-      text
-      smallText
-    }
-    allStrapiUserContact {
-      edges {
-        node {
-          title
-          linkedin
-          email
-          text
-          phone
-          Picture {
-            childImageSharp {
-              fixed(width: 100, height: 100) {
-                base64
-                tracedSVG
-                aspectRatio
-                src
-                srcSet
-                originalName
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query UserContactQuery {
+//     strapiKontakt {
+//       title
+//       text
+//       smallText
+//     }
+//     allStrapiUserContact {
+//       edges {
+//         node {
+//           title
+//           linkedin
+//           email
+//           text
+//           phone
+//           Picture {
+//             childImageSharp {
+//               fixed(width: 100, height: 100) {
+//                 base64
+//                 tracedSVG
+//                 aspectRatio
+//                 src
+//                 srcSet
+//                 originalName
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

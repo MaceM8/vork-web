@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import Icon from "./Icon"
+import ExternalLink from "./ExternalLink"
 import {
   GREY3,
   BLUE,
@@ -10,6 +11,7 @@ import {
   TRANSITION_TIME,
   PRIMARY,
 } from "../constants"
+import ochranaOsobnichUdaju from "../assets/documents/OCHRANA_OSOBNICH_UDAJU.pdf"
 
 const FooterWrapper = styled.footer`
   display: flex;
@@ -99,20 +101,24 @@ const Footer = () => (
   <FooterWrapper>
     <MenuLink href="#header">menu</MenuLink>
     <IconsWrapper>
-      <a href="https://medium.com/">
+      <ExternalLink href="https://medium.com/vork-consulting-s-r-o">
         <FooterIcon icon="medium" />
-      </a>
-      <a href="https://www.linkedin.com/company/vork-consulting">
+      </ExternalLink>
+      <ExternalLink href="https://www.linkedin.com/company/vork-consulting">
         <FooterIcon icon="linkedin" />
-      </a>
-      <a href="https://instagram.com/vork_cz?igshid=elrmleoleau9">
+      </ExternalLink>
+      <ExternalLink href="https://instagram.com/vork_cz?igshid=elrmleoleau9">
         <FooterIcon icon="instagram" />
-      </a>
-      <a href="https://www.facebook.com/1320192124779301/">
+      </ExternalLink>
+      <ExternalLink href="https://www.facebook.com/1320192124779301/">
         <FooterIcon icon="facebook" />
-      </a>
+      </ExternalLink>
     </IconsWrapper>
-    <RulesWrapper>Naše zásady ochrany osobních údajů</RulesWrapper>
+    <RulesWrapper>
+      <ExternalLink href={ochranaOsobnichUdaju}>
+        Naše zásady ochrany osobních údajů
+      </ExternalLink>
+    </RulesWrapper>
   </FooterWrapper>
 )
 

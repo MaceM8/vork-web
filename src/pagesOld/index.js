@@ -1,8 +1,8 @@
 import React from "react"
-// import { graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
-// import SEO from "../components/seo"
+import SEO from "../components/seo"
 import Heading from "../components/Heading"
 import Section from "../components/Section"
 import Button from "../components/Button"
@@ -11,23 +11,29 @@ import Link from "../components/Link"
 import BlogPostsSection from "../components/BlogPostsSection"
 // import Customers from "../components/Customers"
 
-const IndexPage = ({ data }) => (
+const IndexPage = ({ data: { strapiHomepage } }) => (
   <Layout>
-    {/* <SEO title="Home" /> */}
+    <SEO title="Home" />
 
     <Section>
-      <Heading>Some heading</Heading>
-      <Text>Some text</Text>
-      <Link to="/">
-        <Button>Link to some place</Button>
+      <Heading>{strapiHomepage.title}</Heading>
+      <Text>{strapiHomepage.text}</Text>
+      <Link to={strapiHomepage.buttonLink}>
+        <Button>{strapiHomepage.buttonText}</Button>
       </Link>
     </Section>
     <BlogPostsSection
-      heading={"Inspirujte se na našem blogu"}
-      text={"Náš blog - naše, a třeba i vaše inspirace"}
+      heading={strapiHomepage.blogPostHeading || "Inspirujte se na našem blogu"}
+      text={
+        strapiHomepage.blogPostText ||
+        "Náš blog - naše, a třeba i vaše inspirace"
+      }
     />
     <Section center>
-      <Heading>Bottom text</Heading>
+      <Link to={strapiHomepage.bottomButtonLink}>
+        <Button>{strapiHomepage.bottomButtonText}</Button>
+      </Link>
+      <Heading>{strapiHomepage.bottomText}</Heading>
       {/* Uncomment after partners give consent */}
       {/* <Customers /> */}
     </Section>

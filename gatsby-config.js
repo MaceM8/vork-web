@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV || "development"}`,
+  path: `.env.${process.env.MODE || "development"}`,
 })
 
 module.exports = {
@@ -18,25 +18,26 @@ module.exports = {
         path: `${__dirname}/src/assets`,
       },
     },
-    {
-      resolve: "gatsby-source-strapi",
-      options: {
-        apiURL: "http://35.158.124.157:1337", //process.env.GATSBY_API_URL,
-        // apiURL: process.env.GATSBY_API_URL,
-        contentTypes: [
-          // List of the Content Types you want to be able to request from Gatsby.
-          "user-contact",
-          "logo",
-          "simple-card",
-          "homepage",
-          "pomahame",
-          "people",
-          "o-nas",
-          "kontakt",
-        ],
-        queryLimit: 10,
-      },
-    },
+    // {
+    //   resolve: "gatsby-source-strapi",
+    //   options: {
+    //     apiURL: "http://35.158.124.157:1337", //process.env.GATSBY_API_URL,
+    //     // apiURL: process.env.GATSBY_API_URL,
+    //     contentTypes: [
+    //       // List of the Content Types you want to be able to request from Gatsby.
+    //       "user-contact",
+    //       "logo",
+    //       "simple-card",
+    //       "homepage",
+    //       "pomahame",
+    //       "people",
+    //       "o-nas",
+    //       "kontakt",
+    //     ],
+    //     queryLimit: 10,
+    //   },
+    // },
+
     // {
     //   resolve: `gatsby-source-medium`,
     //   options: {
@@ -66,14 +67,15 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-env-variables`,
-      options: {
-        whitelist: ["GATSBY_API_URL"],
-      },
-    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-plugin-netlify-cms",
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
+    "gatsby-plugin-netlify", // make sure to keep it last in the array
   ],
 }

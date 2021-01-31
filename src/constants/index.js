@@ -30,7 +30,7 @@ export const MENU_LINKS = [
   { to: "/", children: "Domů" },
   { to: "/pomahame", children: "S čím pomáháme" },
   { to: "/o-nas", children: "O nás" },
-  { href: "https://medium.com/@tom.vodenka", children: "Blog" },
+  { href: "https://medium.com/vork-consulting-s-r-o", children: "Blog" },
   { to: "/kontakt", children: "Kontakt" },
 ]
 

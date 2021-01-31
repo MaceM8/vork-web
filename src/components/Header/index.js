@@ -49,30 +49,30 @@ const DesktopMenuWrapper = styled.div`
 
 const Header = () => {
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false)
-  const { strapiLogo } = useStaticQuery(
-    graphql`
-      query {
-        strapiLogo {
-          Alt
-          image {
-            childImageSharp {
-              fixed(width: 185, height: 50) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-        }
-      }
-    `
-  )
+  // const { strapiLogo } = useStaticQuery(
+  //   graphql`
+  //     query {
+  //       strapiLogo {
+  //         Alt
+  //         image {
+  //           childImageSharp {
+  //             fixed(width: 185, height: 50) {
+  //               ...GatsbyImageSharpFixed
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   `
+  // )
 
   return (
     <HeaderWrapper id="header">
       <Logo to="/">
-        <Img
+        {/* <Img
           fixed={strapiLogo.image.childImageSharp.fixed}
           alt={strapiLogo.Alt}
-        />
+        /> */}
       </Logo>
       <MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
         <Icon icon="menu" />

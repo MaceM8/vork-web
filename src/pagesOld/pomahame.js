@@ -49,26 +49,26 @@ const HelpingPage = ({ data: { strapiPomahame } }) => (
 
 export default HelpingPage
 
-export const pageQuery = graphql`
-  query PomahameQuery {
-    strapiPomahame {
-      title
-      text
-      simpleBoxSectionHeading
-      simple_cards {
-        Text
-        Title
-      }
-      # user_contact {
-      #   title
-      #   text
-      #   linkedin
-      #   phone
-      #   email
-      #   Picture {
-      #     url
-      #   }
-      # }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query PomahameQuery {
+//     strapiPomahame {
+//       title
+//       text
+//       simpleBoxSectionHeading
+//       simple_cards {
+//         Text
+//         Title
+//       }
+//       # user_contact {
+//       #   title
+//       #   text
+//       #   linkedin
+//       #   phone
+//       #   email
+//       #   Picture {
+//       #     url
+//       #   }
+//       # }
+//     }
+//   }
+// `
