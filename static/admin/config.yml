@@ -1,0 +1,113 @@
+publish_mode: editorial_workflow
+show_preview_links: true
+
+media_folder: 'static/uploads/images'
+public_folder: 'uploads/images'
+
+# site_url: "localhost:8080"
+site_url: 'https://gallant-borg-4a960f.netlify.app/'
+
+slug:
+  clean_accents: true
+
+local_backend: true
+backend:
+  name: git-gateway
+  branch: develop # Branch to update (defaults to master)
+  site_domain: https://gallant-borg-4a960f.netlify.app/
+  # accept_roles:
+  #   - admin
+  #   - editor
+
+collections:
+  - name: 'pages' # Used in routes, e.g., /admin/collections/blog
+    label: 'Stránky' # Used in the UI
+    description: 'Seznam všech stránek webu. Každá stránka definuje používané sekce a atributy pro SEO'
+    folder: 'content/pages' # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - { label: 'Route', name: 'route', widget: 'string' }
+      - { label: 'Titulek', name: 'pageTitle', widget: 'string' }
+      - {
+          label: 'Řazení stránky',
+          name: 'pageOrder',
+          widget: 'number',
+          defatult: 0,
+          min: 0,
+          max: 10,
+        }
+      - { label: 'SEO Titulek', name: 'seoTitle', widget: 'string' }
+      - { label: 'SEO Popisek', name: 'seoDescription', widget: 'string' }
+      - {
+          label: 'Sekce',
+          name: 'sections',
+          widget: 'relation',
+          multiple: true,
+          collection: 'section',
+          value_field: 'sectionTitle',
+          search_fields: ['sectionTitle', sectionText],
+        }
+
+  - name: 'section'
+    label: 'Sekce'
+    description: 'Stavební blok každé stránky'
+    folder: 'content/sections'
+    create: true
+    fields:
+      - { label: 'Titulek', name: 'sectionTitle', widget: 'string' }
+      - { label: 'Text', name: 'sectionText', widget: 'text', required: false }
+      - {
+          label: 'Zarovnání',
+          name: 'align',
+          widget: 'select',
+          default: 'center',
+          options: ['left', 'center'],
+        }
+      - { label: 'Tmavé pozadí', name: 'dark', widget: 'boolean', default: false }
+      - { label: 'Text tlačítka', name: 'buttonText', widget: 'string', required: false }
+      - { label: 'Odkaz tlačítka', name: 'buttonLink', widget: 'string', required: false }
+      - {
+          label: 'Pozice tlačítka',
+          name: 'buttonPosition',
+          widget: 'select',
+          required: false,
+          default: 'bottom',
+          options: ['top', 'bottom'],
+        }
+      - { label: 'Obrázky', name: 'images', widget: 'image', required: false, multiple: true }
+
+  - name: 'footer'
+    label: 'Footer'
+    description: 'Patička zobrazená na každé stránce'
+    folder: 'content/footer'
+    create: false
+    fields:
+      - { label: 'Zpět na začátek - text', name: 'backLinkText', widget: 'string' }
+      - {
+          label: 'Zásady ochrany osobních údajů - text',
+          name: 'privateDataProtectionText',
+          widget: 'string',
+        }
+      - {
+          label: 'Zásady ochrany osobních údajů - soubor',
+          name: 'privateDataProtectionFile',
+          widget: 'file',
+          allow_multiple: false,
+        }
+      - {
+          label: 'Sítě',
+          name: 'networks',
+          widget: 'list',
+          summary: '{{fields.icon}}',
+          fields:
+            [
+              {
+                label: 'Ikona',
+                name: 'icon',
+                widget: 'select',
+                options: ['email', 'facebook', 'instagram', 'linkedin', 'medium', 'phone', 'close'],
+              },
+              { label: 'Link', name: 'link', widget: 'string' },
+            ],
+        }

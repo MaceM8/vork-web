@@ -1,45 +1,45 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react';
+import styled from 'styled-components';
 
-import { PRIMARY, TRANSITION_TIME } from "../constants"
-import hoverMedia from "../util/hover"
+import { PRIMARY, TRANSITION_TIME } from '../constants';
+import hoverMedia from '../util/hover';
 
 const StyledAnchor = styled.a`
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 0.2rem 0;
-  color: ${PRIMARY};
-  text-decoration: none;
-  text-transform: ${({ uppercase }) => uppercase && "uppercase"};
-  transition: all ${TRANSITION_TIME};
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin: 0.2rem 0;
+	color: ${PRIMARY};
+	text-decoration: none;
+	text-transform: ${({ uppercase }) => uppercase && 'uppercase'};
+	transition: all ${TRANSITION_TIME};
 
-  div {
-    margin-right: 1rem;
-  }
+	div {
+		margin-right: 1rem;
+	}
 
-  &:after {
-    position: absolute;
-    bottom: -2px;
-    height: 2px;
-    display: block;
-    content: "";
-    width: 0px;
-    transition: width 0.2s ease-in-out 0s;
-    background: ${PRIMARY};
-  }
+	&:after {
+		position: absolute;
+		bottom: -2px;
+		height: 2px;
+		display: block;
+		content: '';
+		width: 0px;
+		transition: width 0.2s ease-in-out 0s;
+		background: ${PRIMARY};
+	}
 
-  ${({ withUnderline }) =>
-    withUnderline &&
-    hoverMedia`
+	${({ withUnderline }) =>
+		withUnderline &&
+		hoverMedia`
     &:after {
         width: 100%;
     }
   `}
-`
+`;
 
-const ExternalLink = props => (
-  <StyledAnchor target="_blank" rel="noopener noreferrer" {...props} />
-)
+const ExternalLink = (props) => (
+	<StyledAnchor target="_blank" rel="noopener noreferrer" {...props} />
+);
 
-export default ExternalLink
+export default ExternalLink;

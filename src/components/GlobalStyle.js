@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from 'styled-components';
 
-import { PRIMARY, FONT_SIZE } from "../constants"
+import { PRIMARY, FONT_SIZE } from '../constants';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -22,6 +22,6 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     min-height: 100vh;
   }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;
