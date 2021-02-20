@@ -4,9 +4,8 @@ sectionText: Není zas až tak těžké být průvodcem v IT světě, když resp
   preference našich kandidátů a vnímáme potřeby našich klientů.
 align: left
 dark: false
-articles:
-  - Jak z výjimečné firmy udělat průměrnou?
+articles: []
 buttonText: S ČÍM POMÁHÁME
 buttonLink: /pomahame
-buttonPosition: Left
+buttonPosition: bottom
 ---
