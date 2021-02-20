@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { oneOf, string } from 'prop-types';
+import { number, oneOf, string } from 'prop-types';
 
 import chevronRight from './svgs/chevron-right.svg';
 import facebook from './svgs/facebook.svg';
@@ -32,8 +32,8 @@ const renderIcon = (icon, color) => {
 };
 
 const IconWrapper = styled.div`
-	width: 1rem;
-	height: 1rem;
+	width: ${({ size }) => (size ? `${size}rem` : '1rem')};
+	height: ${({ size }) => (size ? `${size}rem` : '1rem')};
 	margin: 0;
 	fill: ${({ color }) => color};
 `;
@@ -45,6 +45,7 @@ const Icon = ({ icon, color, link, ...props }) => (
 Icon.propTypes = {
 	icon: oneOf(Object.keys(icons)).isRequired,
 	color: string,
+	size: number,
 };
 
 export default Icon;

@@ -45,6 +45,27 @@ module.exports = {
 				path: `${__dirname}/content/sections`,
 			},
 		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `articles`,
+				path: `${__dirname}/content/articles`,
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `claims`,
+				path: `${__dirname}/content/claims`,
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `people`,
+				path: `${__dirname}/content/people`,
+			},
+		},
 		// {
 		//   resolve: `gatsby-source-medium`,
 		//   options: {

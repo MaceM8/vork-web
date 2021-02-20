@@ -1,5 +1,7 @@
-const { compose, map, path, pathOr } = require('ramda');
+const { compose, map, path, pathOr, propEq } = require('ramda');
 const nodePath = require('path');
+
+const { getArticles, getClaims, getPages, getPeople, getSections } = require('./src/queries/node');
 
 const PageTemplate = nodePath.resolve('src/templates/Page.js');
 
@@ -14,83 +16,57 @@ const getDefaultSeo = compose(
 	pathOr([], ['allSite', 'edges'])
 );
 
-const getPages = async (graphql) =>
-	await graphql(`
-		{
-			allMarkdownRemark(filter: { fields: { sourceName: { eq: "pages" } } }) {
-				edges {
-					node {
-						frontmatter {
-							route
-							pageTitle
-							seoTitle
-							seoDescription
-							sections
-						}
-					}
-				}
-			}
-			allSite {
-				edges {
-					node {
-						siteMetadata {
-							title
-							description
-							author
-						}
-					}
-				}
-			}
-		}
-	`);
-
-const getSections = async (graphql) =>
-	await graphql(`
-		{
-			allMarkdownRemark(filter: { fields: { sourceName: { eq: "sections" } } }) {
-				edges {
-					node {
-						frontmatter {
-							sectionTitle
-							sectionText
-							align
-							buttonText
-							buttonLink
-							buttonPosition
-							images
-						}
-					}
-				}
-			}
-		}
-	`);
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
 	const { createPage } = actions;
 
-	const { data, errors } = await getPages(graphql);
-	const { data: sectionsRaw, sectionsErrors } = await getSections(graphql);
+	const { data: pagesRaw, errors: pagesErrors } = await getPages(graphql);
 
-	if (errors || sectionsErrors) {
+	const { data: articlesRaw, errors: articleErrors } = await getArticles(graphql);
+	const { data: claimsRaw, errors: claimsErrors } = await getClaims(graphql);
+	const { data: peopleRaw, errors: peopleErrors } = await getPeople(graphql);
+	const { data: sectionsRaw, errors: sectionsErrors } = await getSections(graphql);
+
+	if (articleErrors || claimsErrors || pagesErrors || peopleErrors || sectionsErrors) {
 		// if (errors) {
 		reporter.panicOnBuild('Error while running GraphQL query.');
 
 		return;
 	}
 
-	const pages = normalizeQuery(data);
-	console.log(pages);
-	const defaultSeo = getDefaultSeo(data);
-	const sectionsData = normalizeQuery(sectionsRaw);
+	const pages = normalizeQuery(pagesRaw) || [];
+
+	const articles = normalizeQuery(articlesRaw) || [];
+	const claims = normalizeQuery(claimsRaw) || [];
+	const people = normalizeQuery(peopleRaw) || [];
+	const sections = normalizeQuery(sectionsRaw) || [];
+
+	console.log('page people', people);
+
+	const filterEntities = (entityIds, idPropName, allEntities) =>
+		entityIds.map((id) => allEntities.find(propEq(idPropName, id)));
+
+	const defaultSeo = getDefaultSeo(pages);
+
+	// articles: filterEntities(data.articles || [], 'title', articles),
+	// claims: filterEntities(data.claims || [], 'title', claims),
+	// people: filterEntities(data.people || [], 'name', people),
 
 	pages.forEach(({ route, ...data }) => {
+		const pageSections = filterEntities(data.sections || [], 'sectionTitle', sections) || [];
+		const pageSectionsEnriched = pageSections.map((section) => ({
+			...section,
+			articles: filterEntities(section.articles || [], 'title', articles),
+			claims: filterEntities(section.claims || [], 'title', claims),
+			people: filterEntities(section.people || [], 'name', people),
+		}));
+
 		createPage({
 			path: route,
 			component: PageTemplate,
 			context: {
 				...data,
 				defaultSeo,
-				sectionsData,
+				sections: pageSectionsEnriched,
 			},
 		});
 	});

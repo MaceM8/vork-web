@@ -4,6 +4,9 @@ show_preview_links: true
 media_folder: 'static/uploads/images'
 public_folder: 'uploads/images'
 
+editor:
+  preview: false
+
 # site_url: "localhost:8080"
 site_url: 'https://gallant-borg-4a960f.netlify.app/'
 
@@ -25,7 +28,7 @@ collections:
     description: 'Seznam všech stránek webu. Každá stránka definuje používané sekce a atributy pro SEO'
     folder: 'content/pages' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: '{{route}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - { label: 'Route', name: 'route', widget: 'string' }
       - { label: 'Titulek', name: 'pageTitle', widget: 'string' }
@@ -54,8 +57,9 @@ collections:
     description: 'Stavební blok každé stránky'
     folder: 'content/sections'
     create: true
+    slug: '{{sectionTitle}}'
     fields:
-      - { label: 'Titulek', name: 'sectionTitle', widget: 'string' }
+      - { label: 'Titulek', name: 'sectionTitle', widget: 'string', required: false }
       - { label: 'Text', name: 'sectionText', widget: 'text', required: false }
       - {
           label: 'Zarovnání',
@@ -65,6 +69,37 @@ collections:
           options: ['left', 'center'],
         }
       - { label: 'Tmavé pozadí', name: 'dark', widget: 'boolean', default: false }
+      - { label: 'Obrázky', name: 'images', widget: 'image', required: false, multiple: true }
+      - {
+          label: 'Články',
+          name: 'articles',
+          widget: 'relation',
+          multiple: true,
+          required: false,
+          collection: 'article',
+          value_field: 'title',
+          search_fields: ['title', text],
+        }
+      - {
+          label: 'Claimy',
+          name: 'claims',
+          widget: 'relation',
+          multiple: true,
+          required: false,
+          collection: 'claim',
+          value_field: 'title',
+          search_fields: ['title', text],
+        }
+      - {
+          label: 'Lidé',
+          name: 'people',
+          widget: 'relation',
+          multiple: true,
+          required: false,
+          collection: 'people',
+          value_field: 'name',
+          search_fields: ['name'],
+        }
       - { label: 'Text tlačítka', name: 'buttonText', widget: 'string', required: false }
       - { label: 'Odkaz tlačítka', name: 'buttonLink', widget: 'string', required: false }
       - {
@@ -75,13 +110,13 @@ collections:
           default: 'bottom',
           options: ['top', 'bottom'],
         }
-      - { label: 'Obrázky', name: 'images', widget: 'image', required: false, multiple: true }
 
   - name: 'footer'
     label: 'Footer'
     description: 'Patička zobrazená na každé stránce'
     folder: 'content/footer'
     create: false
+    slug: 'footer'
     fields:
       - { label: 'Zpět na začátek - text', name: 'backLinkText', widget: 'string' }
       - {
@@ -111,3 +146,39 @@ collections:
               { label: 'Link', name: 'link', widget: 'string' },
             ],
         }
+
+  - name: 'article'
+    label: 'Články'
+    description: 'Odkazy na psané články'
+    folder: 'content/articles'
+    create: true
+    slug: '{{title}}'
+    fields:
+      - { label: 'Titulek', name: 'title', widget: 'string' }
+      - { label: 'Text', name: 'text', widget: 'string' }
+      - { label: 'Obrázek', name: 'image', widget: 'image' }
+      - { label: 'Link', name: 'link', widget: 'string' }
+
+  - name: 'claim'
+    label: 'Claimy'
+    description: 'Široké pruhy s claimy'
+    folder: 'content/claims'
+    create: true
+    slug: '{{title}}'
+    fields:
+      - { label: 'Titulek', name: 'title', widget: 'string' }
+      - { label: 'Text', name: 'text', widget: 'text' }
+
+  - name: 'people'
+    label: 'Lidé'
+    description: 'Profily lidí'
+    folder: 'content/people'
+    create: true
+    slug: '{{name}}'
+    fields:
+      - { label: 'Jméno', name: 'name', widget: 'string' }
+      - { label: 'Popis', name: 'description', widget: 'text' }
+      - { label: 'Fotka', name: 'image', widget: 'image' }
+      - { label: 'Linkedin', name: 'linkedin', widget: 'string' }
+      - { label: 'Mail', name: 'mail', widget: 'string' }
+      - { label: 'Telefon', name: 'phone', widget: 'string' }

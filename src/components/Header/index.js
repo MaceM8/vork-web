@@ -5,11 +5,10 @@ import Img from 'gatsby-image';
 import Link from '../Link';
 import { BREAKPOINTS } from '../../constants';
 import Icon from '../Icon';
-import MenuLinks from './MenuLinks';
 import MobileMenu from './MobileMenu';
-import { graphql, useStaticQuery } from 'gatsby';
 import { useHeaderLinks } from '../../queries';
 import MenuLink from './MenuLink';
+import vorkLogo from '../../assets/images/VORK-logo.png';
 
 const HeaderWrapper = styled.header`
 	display: flex;
@@ -51,32 +50,12 @@ const DesktopMenuWrapper = styled.div`
 
 const Header = () => {
 	const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
-	// const { strapiLogo } = useStaticQuery(
-	//   graphql`
-	//     query {
-	//       strapiLogo {
-	//         Alt
-	//         image {
-	//           childImageSharp {
-	//             fixed(width: 185, height: 50) {
-	//               ...GatsbyImageSharpFixed
-	//             }
-	//           }
-	//         }
-	//       }
-	//     }
-	//   `
-	// )
-
 	const headerLinks = useHeaderLinks();
 
 	return (
 		<HeaderWrapper id="header">
 			<Logo to="/">
-				{/* <Img
-          fixed={strapiLogo.image.childImageSharp.fixed}
-          alt={strapiLogo.Alt}
-        /> */}
+				<Img src={vorkLogo} alt={'Some text'} />
 			</Logo>
 			<MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
 				<Icon icon="menu" />

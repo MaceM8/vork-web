@@ -1,31 +1,57 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import { string, object } from 'prop-types';
 
-const ImageWrapper = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-`;
+import hoverMedia from '../util/hover';
+import { TRANSITION_TIME } from '../constants';
+import Icon from './Icon';
+import Link from './Link';
 
-const ImageComponent = styled(Img)`
-	width: 7rem;
-	height: 7rem;
-	border-radius: 50%;
+const ImageOverlay = styled.div`
+	position: absolute;
+	opacity: 0;
+	transition: opacity ${TRANSITION_TIME} ease-in-out;
 `;
 
 const PlainImageComponent = styled.img`
 	width: 7rem;
 	height: 7rem;
 	border-radius: 50%;
+	transition: opacity ${TRANSITION_TIME} ease-in-out;
 `;
 
-const RoundImage = ({ height, fixed, src, ...props }) => (
-	<ImageWrapper height={height}>
-		{fixed && <ImageComponent fixed={fixed} {...props}></ImageComponent>}
-		{src && <PlainImageComponent src={src} {...props} />}
+const ImageWrapper = styled(Link)`
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	cursor: pointer;
+	transition: all ${TRANSITION_TIME} ease-in-out;
+
+	${hoverMedia`
+    transform: scale(1.05);
+
+		${ImageOverlay} {
+			opacity: 1;
+		}
+
+		${PlainImageComponent} {
+			opacity: 0.3;
+		}
+  `};
+`;
+
+const RoundImage = ({ height, fixed, src, linkedin, ...props }) => (
+	<ImageWrapper height={height} href={linkedin}>
+		{src && (
+			<Fragment>
+				<PlainImageComponent src={src} {...props} />
+				<ImageOverlay>
+					<Icon icon="linkedin" size={3} />
+				</ImageOverlay>
+			</Fragment>
+		)}
 	</ImageWrapper>
 );
 
