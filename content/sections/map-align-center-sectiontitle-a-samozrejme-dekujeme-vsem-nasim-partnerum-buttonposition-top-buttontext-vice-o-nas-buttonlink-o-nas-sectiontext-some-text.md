@@ -2,7 +2,7 @@
 sectionTitle: A samozřejmě děkujeme všem našim partnerům
 sectionText: ""
 align: center
-dark: true
+dark: false
 images: ""
 buttonText: VÍCE O NÁS
 buttonLink: /o-nas
