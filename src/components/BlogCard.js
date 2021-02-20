@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Text from './Text';
 import Link from './Link';
 import ExternalLink from './ExternalLink';
-import image from '../assets/images/gatsby-astronaut.png';
+import defaultImage from '../assets/images/gatsby-astronaut.png';
 
 import { TRANSITION_TIME, BORDER_RADIUS, WHITE, BLUE, FONT_SIZE } from '../constants';
 import hoverMedia from '../util/hover';
@@ -66,13 +66,13 @@ const CardText = styled(Text)`
 	}
 `;
 
-const BlogCard = ({ imageSrc = image, title, text, link = '', href, ...props }) => {
+const BlogCard = ({ image = defaultImage, title, text, link = '', href, ...props }) => {
 	const LinkComponent = href ? ExternalLink : Link;
 
 	return (
 		<LinkComponent to={link} href={href} {...props}>
 			<Wrapper>
-				<TitleImage src={imageSrc} alt="Obrázek článku" />
+				<TitleImage src={image} alt="Obrázek článku" />
 				<CardContent>
 					<CardHeading>{title}</CardHeading>
 					<CardText small>{text}</CardText>
@@ -84,7 +84,7 @@ const BlogCard = ({ imageSrc = image, title, text, link = '', href, ...props }) 
 };
 
 BlogCard.propTypes = {
-	imageSrc: string,
+	image: string,
 	title: string,
 	text: string,
 	link: string,

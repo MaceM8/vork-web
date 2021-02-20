@@ -12,45 +12,45 @@ const ContentSpaceDivider = styled.div`
 	margin-bottom: 7rem;
 `;
 
-const getProjectContacts = (contacts) => {
-	return contacts.edges.filter(
-		({ node }) => node.title.includes('Andrea') || node.title.includes('Lucie')
-	);
-};
+// const getProjectContacts = (contacts = { edges = []}) => {
+// 	return contacts.edges.filter(
+// 		({ node }) => node.title.includes('Andrea') || node.title.includes('Lucie')
+// 	);
+// };
 
-const getPeopleContacts = (contacts) => {
-	return contacts.edges.filter(
-		({ node }) => node.title.includes('Adéla') || node.title.includes('Matěj')
-	);
-};
+// const getPeopleContacts = (contacts = { edges = []}) => {
+// 	return contacts.edges.filter(
+// 		({ node }) => node.title.includes('Adéla') || node.title.includes('Matěj')
+// 	);
+// };
 
-const getEffectivityContacts = (contacts) => {
-	return contacts.edges.filter(({ node }) => node.title.includes('Tomáš'));
-};
+// const getEffectivityContacts = (contacts = { edges = []}) => {
+// 	return contacts.edges.filter(({ node }) => node.title.includes('Tomáš'));
+// };
 
-const ContactPage = ({ data: { strapiKontakt, allStrapiUserContact } }) => (
+const ContactPage = ({ data: { strapiKontakt = {}, allStrapiUserContact = [] } = {} }) => (
 	<Layout>
 		<SEO title="Kontakt" />
 
 		<Section>
 			<ContentSpaceDivider>
 				<Heading>Hledáte zajímavý projekt?</Heading>
-				{getProjectContacts(allStrapiUserContact).map((contact, index) => (
+				{/* {getProjectContacts(allStrapiUserContact).map((contact, index) => (
 					<ConnectMedailon key={index} user={contact.node} />
-				))}
+				))} */}
 			</ContentSpaceDivider>
 
 			<ContentSpaceDivider>
 				<Heading>Hledáte do týmu IT profíky nebo potřebujete postavit řešení od A do Z?</Heading>
-				{getPeopleContacts(allStrapiUserContact).map((contact, index) => (
+				{/* {getPeopleContacts(allStrapiUserContact).map((contact, index) => (
 					<ConnectMedailon key={index} user={contact.node} />
-				))}
+				))} */}
 			</ContentSpaceDivider>
 
 			<Heading>Potřebujete zefektivnit práci týmu či jednotlivců?</Heading>
-			{getEffectivityContacts(allStrapiUserContact).map((contact, index) => (
+			{/* {getEffectivityContacts(allStrapiUserContact).map((contact, index) => (
 				<ConnectMedailon key={index} user={contact.node} />
-			))}
+			))} */}
 		</Section>
 		<Section dark grow>
 			<Heading>{strapiKontakt.title}</Heading>
