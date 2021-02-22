@@ -70,7 +70,7 @@ collections:
           default: true,
           required: true,
         }
-      - { label: 'Text', name: 'sectionText', widget: 'text', required: false }
+      - { label: 'Text', name: 'sectionText', widget: 'markdown', required: false }
       - {
           label: 'Zarovnání',
           name: 'align',

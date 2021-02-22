@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Text from './Text';
-import Link from './Link';
 import ExternalLink from './ExternalLink';
 import defaultImage from '../assets/images/gatsby-astronaut.png';
 
@@ -66,22 +65,18 @@ const CardText = styled(Text)`
 	}
 `;
 
-const Card = ({ image = defaultImage, title, text, link = '', href, ...props }) => {
-	const LinkComponent = href ? ExternalLink : Link;
-
-	return (
-		<LinkComponent to={link} href={href} {...props}>
-			<Wrapper>
-				<TitleImage src={image} alt="Obrázek článku" />
-				<CardContent>
-					<CardHeading>{title}</CardHeading>
-					<CardText small>{text}</CardText>
-					<Icon icon="chevronRight" />
-				</CardContent>
-			</Wrapper>
-		</LinkComponent>
-	);
-};
+const Card = ({ image = defaultImage, title, text, link = '', ...props }) => (
+	<ExternalLink to={link} href={link} {...props}>
+		<Wrapper>
+			<TitleImage src={image} alt="Obrázek článku" />
+			<CardContent>
+				<CardHeading>{title}</CardHeading>
+				<CardText small>{text}</CardText>
+				<Icon icon="chevronRight" />
+			</CardContent>
+		</Wrapper>
+	</ExternalLink>
+);
 
 Card.propTypes = {
 	image: string,

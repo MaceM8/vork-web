@@ -1,8 +1,9 @@
 ---
+align: center
 hiddenTitle: Kontakt oddíly
 sectionTitle: ' Kontakt'
 titleVisible: true
-align: center
+sectionText: ''
 dark: false
 imagesMode: column
 contactDomains:

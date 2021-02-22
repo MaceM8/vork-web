@@ -1,7 +1,7 @@
 import React from 'react';
 import { arrayOf, shape } from 'prop-types';
 import styled from 'styled-components';
-import BlogCard from './Card';
+import Card from './Card';
 import { articleShape } from '../util/shapes';
 
 const ListWrapper = styled.div`
@@ -11,9 +11,7 @@ const ListWrapper = styled.div`
 `;
 
 const CardList = ({ cards }) => (
-	<ListWrapper>
-		{cards && cards.map((props, index) => <BlogCard key={index} {...props} />)}
-	</ListWrapper>
+	<ListWrapper>{cards && cards.map((props, index) => <Card key={index} {...props} />)}</ListWrapper>
 );
 
 CardList.propTypes = { cards: arrayOf(shape(articleShape)) };

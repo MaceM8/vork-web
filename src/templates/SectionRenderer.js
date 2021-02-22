@@ -62,6 +62,7 @@ const SectionRenderer = ({
 		)}
 
 		{titleVisible && <Heading>{sectionTitle}</Heading>}
+		{/* TODO: Make as markdown */}
 		<Text>{sectionText}</Text>
 
 		<CardList cards={articles} />
