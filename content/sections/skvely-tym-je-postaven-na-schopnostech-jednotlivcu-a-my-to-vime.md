@@ -5,7 +5,7 @@ sectionText: |-
   Postrádáte v týmu angažované a kooperující IT profíky?
   Potřebujete postavit projekt od A do Z?
   Chcete zefektivnit práci týmu či jednotlivců?
-align: center
+align: left
 dark: false
 buttonPosition: bottom
 ---
