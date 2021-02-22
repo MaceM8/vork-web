@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { string, object } from 'prop-types';
+import { string } from 'prop-types';
 
 import hoverMedia from '../util/hover';
 import { TRANSITION_TIME } from '../constants';
@@ -42,7 +42,7 @@ const ImageWrapper = styled(Link)`
   `};
 `;
 
-const RoundImage = ({ height, fixed, src, linkedin, ...props }) => (
+const RoundImage = ({ height, linkedin, src, ...props }) => (
 	<ImageWrapper height={height} href={linkedin}>
 		{src && (
 			<Fragment>
@@ -57,8 +57,8 @@ const RoundImage = ({ height, fixed, src, linkedin, ...props }) => (
 
 RoundImage.propTypes = {
 	height: string,
-	fixed: object, // Object shape from Strapi
-	url: string,
+	linkedin: string,
+	src: string,
 };
 
 export default RoundImage;

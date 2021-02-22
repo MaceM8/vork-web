@@ -36,37 +36,7 @@ export const POSITION = {
 	BOTTOM: 'bottom',
 };
 
-export const MENU_LINKS = [
-	{ to: '/', children: 'Domů' },
-	{ to: '/pomahame', children: 'S čím pomáháme' },
-	{ to: '/o-nas', children: 'O nás' },
-	{ href: 'https://medium.com/vork-consulting-s-r-o', children: 'Blog' },
-	{ to: '/kontakt', children: 'Kontakt' },
-];
-
-export const USER_MEDAILON = {
-	TOM: {
-		photoUrl: '../assets/images/gatsby-astronaut.png',
-		title: 'Chceš se dozvědět více?',
-		text: 'Ozvi se Tomášovi, rád se s tebou potká.',
-		linkedin: '',
-		mail: 'tomas.vodenka@vork.cz',
-		phone: '+420 724 716 649',
-	},
-	ANDY: {
-		photoUrl: '../assets/images/gatsby-astronaut.png',
-		title: 'Chceš se s námi spojit?',
-		text: 'Ozvi se Andy, ráda se s tebou potká.',
-		linkedin: '',
-		mail: 'andrea.sebkova@vork.cz',
-		phone: '+420 721 824 455',
-	},
-	CONTACT: {
-		photoUrl: '../assets/images/gatsby-astronaut.png',
-		title: 'Ozvi se s čímkoliv',
-		text: 'kontaktuj Andy, ráda se s tebou potká.',
-		linkedin: '',
-		mail: 'andrea.sebkova@vork.cz',
-		phone: '+420 721 824 455',
-	},
+export const IMAGES_MODE = {
+	COLUMN: 'column',
+	CAROUSEL: 'carousel',
 };

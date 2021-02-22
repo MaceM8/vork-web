@@ -1,7 +1,5 @@
-const getPeople = async (graphql) => {
-	console.log('fetching people');
-
-	return await graphql(`
+const getPeople = async (graphql) =>
+	await graphql(`
 		{
 			allMarkdownRemark(filter: { fields: { sourceName: { eq: "people" } } }) {
 				edges {
@@ -19,6 +17,5 @@ const getPeople = async (graphql) => {
 			}
 		}
 	`);
-};
 
 module.exports = getPeople;

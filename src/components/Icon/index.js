@@ -38,7 +38,7 @@ const IconWrapper = styled.div`
 	fill: ${({ color }) => color};
 `;
 
-const Icon = ({ icon, color, link, ...props }) => (
+const Icon = ({ icon, color, ...props }) => (
 	<IconWrapper {...props}>{icon && renderIcon(icon, color)}</IconWrapper>
 );
 

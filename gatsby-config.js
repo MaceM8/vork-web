@@ -14,6 +14,16 @@ module.exports = {
 	plugins: [
 		'gatsby-plugin-styled-components',
 		`gatsby-plugin-react-helmet`,
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: `Vork web`,
+				short_name: `Vork web`,
+				start_url: `/`,
+				display: `standalone`,
+				icon: 'src/assets/images/VORK-favicon.png',
+			},
+		},
 		`gatsby-transformer-remark`,
 		`gatsby-remark-source-name`,
 		{
@@ -66,6 +76,20 @@ module.exports = {
 				path: `${__dirname}/content/people`,
 			},
 		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `contactDomains`,
+				path: `${__dirname}/content/contactDomains`,
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `webConfig`,
+				path: `${__dirname}/content/webConfig`,
+			},
+		},
 		// {
 		//   resolve: `gatsby-source-medium`,
 		//   options: {
@@ -75,18 +99,6 @@ module.exports = {
 		// },
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
-		{
-			resolve: `gatsby-plugin-manifest`,
-			options: {
-				name: `gatsby-starter-default`,
-				short_name: `starter`,
-				start_url: `/`,
-				background_color: `#663399`,
-				theme_color: `#663399`,
-				display: `minimal-ui`,
-				icon: `src/assets/images/gatsby-icon.png`, // This path is relative to the root of the site.
-			},
-		},
 		{
 			resolve: 'gatsby-plugin-react-svg',
 			options: {

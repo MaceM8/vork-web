@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { bool } from 'prop-types';
+import { bool, func } from 'prop-types';
 
 import { TRANSITION_TIME, WHITE } from '../../constants';
 import MenuLinks from './MenuLinks';
@@ -51,6 +51,7 @@ const MobileMenu = ({ isOpened, onClose, ...props }) => (
 
 MobileMenu.propTypes = {
 	isOpened: bool,
+	onClose: func,
 };
 
 export default MobileMenu;

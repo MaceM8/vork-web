@@ -8,7 +8,7 @@ editor:
   preview: false
 
 # site_url: "localhost:8080"
-site_url: 'https://gallant-borg-4a960f.netlify.app/'
+site_url: 'https://vork-test.netlify.app'
 
 slug:
   clean_accents: true
@@ -17,20 +17,21 @@ local_backend: true
 backend:
   name: git-gateway
   branch: develop # Branch to update (defaults to master)
-  site_domain: https://gallant-borg-4a960f.netlify.app/
+  site_domain: https://vork-test.netlify.app
   # accept_roles:
   #   - admin
   #   - editor
 
 collections:
-  - name: 'pages' # Used in routes, e.g., /admin/collections/blog
-    label: 'Stránky' # Used in the UI
-    description: 'Seznam všech stránek webu. Každá stránka definuje používané sekce a atributy pro SEO'
-    folder: 'content/pages' # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: '{{route}}' # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: 'pages'
+    label: 'Stránky'
+    description: 'Seznam všech stránek webu. Každá stránka definuje používané sekce a atributy pro SEO. By specifying redirect attribute, the page is not created and simply redirects to provided URL.'
+    folder: 'content/pages'
+    create: true
+    slug: '{{route}}'
+    fields:
       - { label: 'Route', name: 'route', widget: 'string' }
+      - { label: 'Redirect', name: 'redirect', widget: 'string', required: false }
       - { label: 'Titulek', name: 'pageTitle', widget: 'string' }
       - {
           label: 'Řazení stránky',
@@ -47,6 +48,7 @@ collections:
           name: 'sections',
           widget: 'relation',
           multiple: true,
+          required: false,
           collection: 'section',
           value_field: 'sectionTitle',
           search_fields: ['sectionTitle', sectionText],
@@ -57,9 +59,17 @@ collections:
     description: 'Stavební blok každé stránky'
     folder: 'content/sections'
     create: true
-    slug: '{{sectionTitle}}'
+    slug: '{{hiddenTitle}}-{{sectionTitle}}'
+    identifier_field: 'sectionTitle'
     fields:
       - { label: 'Titulek', name: 'sectionTitle', widget: 'string', required: false }
+      - {
+          label: 'Zobrazit titulek sekce',
+          name: 'titleVisible',
+          widget: 'boolean',
+          default: true,
+          required: true,
+        }
       - { label: 'Text', name: 'sectionText', widget: 'text', required: false }
       - {
           label: 'Zarovnání',
@@ -68,8 +78,26 @@ collections:
           default: 'center',
           options: ['left', 'center'],
         }
-      - { label: 'Tmavé pozadí', name: 'dark', widget: 'boolean', default: false }
-      - { label: 'Obrázky', name: 'images', widget: 'image', required: false, multiple: true }
+      - { label: 'Tmavé pozadí', name: 'dark', widget: 'boolean', default: false, required: false }
+      - {
+          label: 'Obrázky',
+          name: 'images',
+          widget: 'list',
+          summary: '{{fields.image}}',
+          required: false,
+          fields:
+            [
+              { label: Obrázek, name: image, widget: image },
+              { label: Popis, name: imageAlt, widget: string },
+            ],
+        }
+      - {
+          label: 'Mód zobrazení obrázků',
+          name: 'imagesMode',
+          widget: 'select',
+          default: 'column',
+          options: ['column', 'carousel'],
+        }
       - {
           label: 'Články',
           name: 'articles',
@@ -99,6 +127,16 @@ collections:
           collection: 'people',
           value_field: 'name',
           search_fields: ['name'],
+        }
+      - {
+          label: 'Produktové kontakty',
+          name: 'contactDomains',
+          widget: 'relation',
+          multiple: true,
+          required: false,
+          collection: 'contactDomain',
+          value_field: 'title',
+          search_fields: ['title'],
         }
       - { label: 'Text tlačítka', name: 'buttonText', widget: 'string', required: false }
       - { label: 'Odkaz tlačítka', name: 'buttonLink', widget: 'string', required: false }
@@ -182,3 +220,33 @@ collections:
       - { label: 'Linkedin', name: 'linkedin', widget: 'string' }
       - { label: 'Mail', name: 'mail', widget: 'string' }
       - { label: 'Telefon', name: 'phone', widget: 'string' }
+
+  - name: 'contactDomain'
+    label: 'Produktové kontakty'
+    description: 'Oblasti působení Vorku a kontakty k nim'
+    folder: 'content/contactDomains'
+    create: true
+    slug: '{{title}}'
+    fields:
+      - { label: 'Titulek', name: 'title', widget: 'string' }
+      - {
+          label: 'Lidé',
+          name: 'people',
+          widget: 'relation',
+          multiple: true,
+          required: false,
+          collection: 'people',
+          value_field: 'name',
+          search_fields: ['name'],
+        }
+
+  - name: 'webConfig'
+    label: 'Konfigurace webu'
+    description: 'Nastavení obecných atributů webu'
+    folder: 'content/webConfig'
+    create: false
+    slug: 'websiteConfig'
+    fields:
+      - { label: 'Logo', name: 'logo', widget: 'image' }
+      - { label: 'Obecný titulek webu', name: 'title', widget: 'string' }
+      - { label: 'Obecný popis', name: 'description', widget: 'text' }

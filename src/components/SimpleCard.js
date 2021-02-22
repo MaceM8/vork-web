@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { string } from 'prop-types';
 import { WHITE, BORDER_RADIUS, PRIMARY } from '../constants';
 import Heading from './Heading';
 import Text from './Text';
@@ -24,5 +25,10 @@ const SimpleCard = ({ heading, text, ...props }) => (
 		</Text>
 	</Wrapper>
 );
+
+SimpleCard.propTypes = {
+	heading: string,
+	text: string,
+};
 
 export default SimpleCard;

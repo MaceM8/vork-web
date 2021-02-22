@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { string } from 'prop-types';
 
 import { WHITE, BORDER_RADIUS } from '../constants';
 import Heading from './Heading';
@@ -32,5 +33,12 @@ const PeopleCard = ({ name, description, image, linkedin }) => (
 		</BioWrapper>
 	</Wrapper>
 );
+
+PeopleCard.propTypes = {
+	name: string,
+	description: string,
+	image: string,
+	linkedin: string,
+};
 
 export default PeopleCard;

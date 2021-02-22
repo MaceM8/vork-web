@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 
 import Link from '../Link';
 import { BREAKPOINTS } from '../../constants';
@@ -8,7 +7,7 @@ import Icon from '../Icon';
 import MobileMenu from './MobileMenu';
 import { useHeaderLinks } from '../../queries';
 import MenuLink from './MenuLink';
-import vorkLogo from '../../assets/images/VORK-logo.png';
+import { useWebConfig } from '../../queries/useWebConfig';
 
 const HeaderWrapper = styled.header`
 	display: flex;
@@ -20,11 +19,14 @@ const HeaderWrapper = styled.header`
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 `;
 
-const Logo = styled(Link)`
+const LogoWrapper = styled(Link)`
 	display: flex;
 	align-items: center;
-	align-items: center;
 	margin: 0 1rem;
+`;
+
+const Logo = styled.img`
+	height: 50px;
 `;
 
 const MobileMenuWrapper = styled.div`
@@ -51,18 +53,21 @@ const DesktopMenuWrapper = styled.div`
 const Header = () => {
 	const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
 	const headerLinks = useHeaderLinks();
+	const { logo } = useWebConfig();
+
+	console.log(headerLinks);
 
 	return (
 		<HeaderWrapper id="header">
-			<Logo to="/">
-				<Img src={vorkLogo} alt={'Some text'} />
-			</Logo>
+			<LogoWrapper to="/">
+				<Logo src={logo} alt={'Vork logo'} />
+			</LogoWrapper>
 			<MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
 				<Icon icon="menu" />
 			</MobileMenuWrapper>
 			<DesktopMenuWrapper>
-				{headerLinks.map(({ route, pageTitle, href }) => (
-					<MenuLink key={route} to={route} href={href}>
+				{headerLinks.map(({ route, redirect, pageTitle }) => (
+					<MenuLink key={route} to={route} href={redirect}>
 						{pageTitle}
 					</MenuLink>
 				))}

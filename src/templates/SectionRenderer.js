@@ -1,15 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import Carousel from 'nuka-carousel';
 
-import CardList from '../components/BlogCardList';
+import CardList from '../components/CardList';
 import Button from '../components/Button';
 import Heading from '../components/Heading';
 import Section from '../components/Section';
 import Text from '../components/Text';
-import { SECTION_ALIGN, POSITION, BREAKPOINTS } from '../constants';
+import { SECTION_ALIGN, POSITION, BREAKPOINTS, IMAGES_MODE } from '../constants';
 import SimpleCard from '../components/SimpleCard';
 import PeopleCard from '../components/PeopleCard';
+import { arrayOf, bool, string } from 'prop-types';
+import {
+	articleShape,
+	claimShape,
+	imageShape,
+	personShape,
+	contactDomainShape,
+} from '../util/shapes';
+import ContactDomain from './ContactDomain';
 
 const ImageWrapper = styled.img`
 	width: 100%;
@@ -28,16 +38,6 @@ const PeopleWrapper = styled.div`
 	}
 `;
 
-const renderImages = (images) => {
-	if (images) {
-		return typeof images == 'string' ? (
-			<ImageWrapper alt="Naše akce" src={images} />
-		) : (
-			images.map((image) => <ImageWrapper alt="Naše akce" src={image} />)
-		);
-	}
-};
-
 const SectionRenderer = ({
 	sectionTitle,
 	sectionText,
@@ -47,45 +47,78 @@ const SectionRenderer = ({
 	buttonLink,
 	buttonText,
 	images,
+	imagesMode,
 	articles,
 	claims,
 	people,
-}) => {
-	console.log({ claims });
+	titleVisible,
+	contactDomains,
+	...props
+}) => (
+	<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
+		{buttonPosition === POSITION.TOP && buttonLink && (
+			<Link to={buttonLink}>
+				<Button>{buttonText}</Button>
+			</Link>
+		)}
+		{console.log('props', contactDomains, props)}
 
-	return (
-		<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
-			{buttonPosition === POSITION.TOP && buttonLink && (
-				<Link to={buttonLink}>
-					<Button>{buttonText}</Button>
-				</Link>
-			)}
+		<Heading>{sectionTitle}</Heading>
+		<Text>{sectionText}</Text>
 
-			<Heading>{sectionTitle}</Heading>
-			<Text>{sectionText}</Text>
+		<CardList cards={articles} />
 
-			<CardList cards={articles} />
+		{people && (
+			<PeopleWrapper>
+				{people.map((person) => (
+					<PeopleCard key={person.name} {...person} />
+				))}
+			</PeopleWrapper>
+		)}
 
-			{people && (
-				<PeopleWrapper>
-					{people.map((person) => (
-						<PeopleCard key={person.name} {...person} />
-					))}
-				</PeopleWrapper>
-			)}
+		{claims &&
+			claims.map(({ title, text }) => <SimpleCard key={title} heading={title} text={text} />)}
 
-			{claims &&
-				claims.map(({ title, text }) => <SimpleCard key={title} heading={title} text={text} />)}
+		{buttonPosition === POSITION.BOTTOM && buttonLink && (
+			<Link to={buttonLink}>
+				<Button>{buttonText}</Button>
+			</Link>
+		)}
 
-			{buttonPosition === POSITION.BOTTOM && buttonLink && (
-				<Link to={buttonLink}>
-					<Button>{buttonText}</Button>
-				</Link>
-			)}
+		{imagesMode === IMAGES_MODE.COLUMN &&
+			images &&
+			images.map(({ image, imageAlt }) => <ImageWrapper key={image} alt={imageAlt} src={image} />)}
 
-			{renderImages(images)}
-		</Section>
-	);
+		{imagesMode === IMAGES_MODE.CAROUSEL && images && (
+			<Carousel autoplay={true} slidesToShow={3}>
+				{images.map(({ image, imageAlt }) => (
+					<ImageWrapper key={image} alt={imageAlt} src={image} />
+				))}
+			</Carousel>
+		)}
+
+		{contactDomains &&
+			contactDomains.map((contactDomain, index) => (
+				<ContactDomain key={index} {...contactDomain} />
+			))}
+	</Section>
+);
+
+SectionRenderer.propTypes = {
+	sectionTitle: string,
+	titleVisible: bool,
+	sectionText: string,
+	align: string,
+	dark: bool,
+	buttonPosition: string,
+	buttonLink: string,
+	buttonText: string,
+	images: arrayOf(imageShape),
+	imagesMode: string,
+	articles: arrayOf(articleShape),
+	claims: arrayOf(claimShape),
+	people: arrayOf(personShape),
+	contactDomains: arrayOf(contactDomainShape),
 };
 
 export default SectionRenderer;

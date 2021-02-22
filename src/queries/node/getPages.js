@@ -6,6 +6,7 @@ const getPages = async (graphql) =>
 					node {
 						frontmatter {
 							route
+							redirect
 							pageTitle
 							seoTitle
 							seoDescription

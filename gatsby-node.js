@@ -1,7 +1,14 @@
 const { compose, map, path, pathOr, propEq } = require('ramda');
 const nodePath = require('path');
 
-const { getArticles, getClaims, getPages, getPeople, getSections } = require('./src/queries/node');
+const {
+	getArticles,
+	getClaims,
+	getPages,
+	getPeople,
+	getSections,
+	getContactDomains,
+} = require('./src/queries/node');
 
 const PageTemplate = nodePath.resolve('src/templates/Page.js');
 
@@ -16,6 +23,9 @@ const getDefaultSeo = compose(
 	pathOr([], ['allSite', 'edges'])
 );
 
+const filterEntities = (entityIds, idPropName, allEntities) =>
+	entityIds.map((id) => allEntities.find(propEq(idPropName, id)));
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
 	const { createPage } = actions;
 
@@ -25,8 +35,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 	const { data: claimsRaw, errors: claimsErrors } = await getClaims(graphql);
 	const { data: peopleRaw, errors: peopleErrors } = await getPeople(graphql);
 	const { data: sectionsRaw, errors: sectionsErrors } = await getSections(graphql);
+	const { data: contactDomainsRaw, errors: contactDomainsErrors } = await getContactDomains(
+		graphql
+	);
 
-	if (articleErrors || claimsErrors || pagesErrors || peopleErrors || sectionsErrors) {
+	if (
+		(articleErrors || claimsErrors || pagesErrors || peopleErrors || sectionsErrors,
+		contactDomainsErrors)
+	) {
 		// if (errors) {
 		reporter.panicOnBuild('Error while running GraphQL query.');
 
@@ -39,35 +55,41 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 	const claims = normalizeQuery(claimsRaw) || [];
 	const people = normalizeQuery(peopleRaw) || [];
 	const sections = normalizeQuery(sectionsRaw) || [];
+	const contactDomains = normalizeQuery(contactDomainsRaw) || [];
 
-	console.log('page people', people);
-
-	const filterEntities = (entityIds, idPropName, allEntities) =>
-		entityIds.map((id) => allEntities.find(propEq(idPropName, id)));
+	const contactDomainsPopulated = contactDomains.map(({ title, people: contactDomainPeople }) => ({
+		title,
+		people: filterEntities(contactDomainPeople || [], 'name', people),
+	}));
 
 	const defaultSeo = getDefaultSeo(pages);
 
-	// articles: filterEntities(data.articles || [], 'title', articles),
-	// claims: filterEntities(data.claims || [], 'title', claims),
-	// people: filterEntities(data.people || [], 'name', people),
+	console.log(JSON.stringify(contactDomainsPopulated));
 
-	pages.forEach(({ route, ...data }) => {
-		const pageSections = filterEntities(data.sections || [], 'sectionTitle', sections) || [];
-		const pageSectionsEnriched = pageSections.map((section) => ({
-			...section,
-			articles: filterEntities(section.articles || [], 'title', articles),
-			claims: filterEntities(section.claims || [], 'title', claims),
-			people: filterEntities(section.people || [], 'name', people),
-		}));
+	pages.forEach(({ route, redirect, ...data }) => {
+		if (!redirect) {
+			const pageSections = filterEntities(data.sections || [], 'sectionTitle', sections) || [];
+			const pageSectionsEnriched = pageSections.map((section) => ({
+				...section,
+				articles: filterEntities(section.articles || [], 'title', articles),
+				claims: filterEntities(section.claims || [], 'title', claims),
+				people: filterEntities(section.people || [], 'name', people),
+				contactDomains: filterEntities(
+					section.contactDomains || [],
+					'title',
+					contactDomainsPopulated
+				),
+			}));
 
-		createPage({
-			path: route,
-			component: PageTemplate,
-			context: {
-				...data,
-				defaultSeo,
-				sections: pageSectionsEnriched,
-			},
-		});
+			createPage({
+				path: route,
+				component: PageTemplate,
+				context: {
+					...data,
+					defaultSeo,
+					sections: pageSectionsEnriched,
+				},
+			});
+		}
 	});
 };

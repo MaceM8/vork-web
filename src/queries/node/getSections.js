@@ -11,11 +11,16 @@ const getSections = async (graphql) =>
 							buttonText
 							buttonLink
 							buttonPosition
-							images
 							dark
 							articles
 							claims
 							people
+							imagesMode
+							contactDomains
+							images {
+								image
+								imageAlt
+							}
 						}
 					}
 				}

@@ -12,6 +12,7 @@ const query = graphql`
 				node {
 					frontmatter {
 						route
+						redirect
 						pageTitle
 						pageOrder
 					}

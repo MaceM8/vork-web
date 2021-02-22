@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { node } from 'prop-types';
 import { BEIGE, BREAKPOINTS, GREY3, BLUE, WHITE } from '../constants';
 
 const SectionWrapper = styled.section`
@@ -51,5 +52,7 @@ const Section = ({ children, ...props }) => (
 		<ContentWrapper>{children}</ContentWrapper>
 	</SectionWrapper>
 );
+
+Section.propTypes = { children: node };
 
 export default Section;

@@ -1,7 +1,10 @@
 ---
+hiddenTitle: Staffing
 sectionTitle: Od staffingu po vytváření synergických týmů.
+titleVisible: true
 align: center
 dark: false
+imagesMode: column
 claims:
   - Pomáháme s výběrem správných lidí
 buttonPosition: bottom

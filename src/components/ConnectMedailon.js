@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { string } from 'prop-types';
 
-import Text from './Text';
 import Icon from './Icon';
-import Image from './RoundImage';
+import RoundImage from './RoundImage';
 import { BREAKPOINTS, GREY1 } from '../constants';
 import ExternalLink from './ExternalLink';
 
@@ -44,35 +44,26 @@ const LinksWrapper = styled.div`
 	}
 `;
 
-const ConnectMedailon = ({
-	user: { linkedin, email, name, phone, Picture = {}, text, title },
-
-	...otherProps
-}) => {
-	if (!title) {
+const ConnectMedailon = ({ mail, image, linkedin, name, phone, title, ...otherProps }) => {
+	if (!name) {
 		return null;
 	}
 
 	return (
 		<Wrapper {...otherProps}>
 			<UserClaim>
-				<UserClaimTitle>{title}</UserClaimTitle>
-				<Text small>{text}</Text>
+				<UserClaimTitle>{name}</UserClaimTitle>
 			</UserClaim>
-			<Image
-				fixed={Picture.childImageSharp ? Picture.childImageSharp.fixed : null}
-				alt={name}
-				src={Picture.url ? `${process.env.GATSBY_API_URL}${Picture.url}` : null}
-			/>
+			<RoundImage src={image} alt={name} linkedin={linkedin} />
 			<LinksWrapper>
 				{linkedin && (
 					<ExternalLink href={linkedin}>
 						<Icon icon="linkedin" color={GREY1} /> LinkedIn
 					</ExternalLink>
 				)}
-				<ExternalLink href={`mailto:${email}`}>
+				<ExternalLink href={`mailto:${mail}`}>
 					<Icon icon="email" color={GREY1} />
-					{email}
+					{mail}
 				</ExternalLink>
 				<ExternalLink href={`tel:${phone}`} color={GREY1}>
 					<Icon icon="phone" />
@@ -81,6 +72,15 @@ const ConnectMedailon = ({
 			</LinksWrapper>
 		</Wrapper>
 	);
+};
+
+ConnectMedailon.propTypes = {
+	image: string,
+	linkedin: string,
+	mail: string,
+	name: string,
+	phone: string,
+	title: string,
 };
 
 export default ConnectMedailon;

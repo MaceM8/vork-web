@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Link from '../Link';
 import ExternalLink from '../ExternalLink';
+import { node, string } from 'prop-types';
 
 const LinkBlock = styled.div`
 	display: flex;
@@ -16,7 +17,7 @@ const LinkWrapper = styled.div`
 const MenuLink = ({ to, href, children }) => (
 	<LinkBlock>
 		<LinkWrapper>
-			{to && (
+			{!href && to && (
 				<Link withUnderline to={to}>
 					{children}
 				</Link>
@@ -29,5 +30,11 @@ const MenuLink = ({ to, href, children }) => (
 		</LinkWrapper>
 	</LinkBlock>
 );
+
+MenuLink.propTypes = {
+	to: string,
+	href: string,
+	children: node,
+};
 
 export default MenuLink;

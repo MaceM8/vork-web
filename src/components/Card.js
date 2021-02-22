@@ -66,7 +66,7 @@ const CardText = styled(Text)`
 	}
 `;
 
-const BlogCard = ({ image = defaultImage, title, text, link = '', href, ...props }) => {
+const Card = ({ image = defaultImage, title, text, link = '', href, ...props }) => {
 	const LinkComponent = href ? ExternalLink : Link;
 
 	return (
@@ -83,7 +83,7 @@ const BlogCard = ({ image = defaultImage, title, text, link = '', href, ...props
 	);
 };
 
-BlogCard.propTypes = {
+Card.propTypes = {
 	image: string,
 	title: string,
 	text: string,
@@ -91,4 +91,4 @@ BlogCard.propTypes = {
 	href: string,
 };
 
-export default BlogCard;
+export default Card;
