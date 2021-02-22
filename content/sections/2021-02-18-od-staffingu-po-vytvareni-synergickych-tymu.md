@@ -7,5 +7,6 @@ dark: false
 imagesMode: column
 claims:
   - Pomáháme s výběrem správných lidí
+  - Pomáháme členům týmu osobnostně růst
 buttonPosition: bottom
 ---
