@@ -1,9 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { bool, func } from 'prop-types';
+import { bool, func, node } from 'prop-types';
 
 import { TRANSITION_TIME, WHITE } from '../../constants';
-import MenuLinks from './MenuLinks';
 import Icon from '../Icon';
 
 const Wrapper = styled.div`
@@ -38,20 +37,19 @@ const CloseIconWrapper = styled.div`
 	top: 1.7rem;
 `;
 
-const MobileMenu = ({ isOpened, onClose, ...props }) => (
+const MobileMenu = ({ isOpened, onClose, children, ...props }) => (
 	<Wrapper isOpened={isOpened} {...props}>
 		<CloseIconWrapper onClick={onClose}>
-			<Icon icon="close" />
+			<Icon icon="close" size={2} />
 		</CloseIconWrapper>
-		<LinksWrapper>
-			<MenuLinks />
-		</LinksWrapper>
+		<LinksWrapper>{children}</LinksWrapper>
 	</Wrapper>
 );
 
 MobileMenu.propTypes = {
 	isOpened: bool,
 	onClose: func,
+	children: node,
 };
 
 export default MobileMenu;

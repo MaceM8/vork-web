@@ -55,15 +55,13 @@ const Header = () => {
 	const headerLinks = useHeaderLinks();
 	const { logo } = useWebConfig();
 
-	console.log(headerLinks);
-
 	return (
 		<HeaderWrapper id="header">
 			<LogoWrapper to="/">
 				<Logo src={logo} alt={'Vork logo'} />
 			</LogoWrapper>
 			<MobileMenuWrapper onClick={() => setMobileMenuVisible(true)}>
-				<Icon icon="menu" />
+				<Icon icon="menu" size={2} />
 			</MobileMenuWrapper>
 			<DesktopMenuWrapper>
 				{headerLinks.map(({ route, redirect, pageTitle }) => (
@@ -72,7 +70,13 @@ const Header = () => {
 					</MenuLink>
 				))}
 			</DesktopMenuWrapper>
-			<MobileMenu isOpened={isMobileMenuVisible} onClose={() => setMobileMenuVisible(false)} />
+			<MobileMenu isOpened={isMobileMenuVisible} onClose={() => setMobileMenuVisible(false)}>
+				{headerLinks.map(({ route, redirect, pageTitle }) => (
+					<MenuLink key={route} to={route} href={redirect}>
+						{pageTitle}
+					</MenuLink>
+				))}
+			</MobileMenu>
 		</HeaderWrapper>
 	);
 };

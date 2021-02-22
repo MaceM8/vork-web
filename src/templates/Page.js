@@ -6,7 +6,6 @@ import SectionRenderer from './SectionRenderer';
 
 const Template = ({ pageContext }) => (
 	<Layout>
-		{console.log(pageContext.sections)}
 		{pageContext.sections.map((sectionData) => (
 			<SectionRenderer key={sectionData.sectionTitle} {...sectionData} />
 		))}

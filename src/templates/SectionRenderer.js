@@ -53,7 +53,6 @@ const SectionRenderer = ({
 	people,
 	titleVisible,
 	contactDomains,
-	...props
 }) => (
 	<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
 		{buttonPosition === POSITION.TOP && buttonLink && (
@@ -61,9 +60,8 @@ const SectionRenderer = ({
 				<Button>{buttonText}</Button>
 			</Link>
 		)}
-		{console.log('props', contactDomains, props)}
 
-		<Heading>{sectionTitle}</Heading>
+		{titleVisible && <Heading>{sectionTitle}</Heading>}
 		<Text>{sectionText}</Text>
 
 		<CardList cards={articles} />

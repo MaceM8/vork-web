@@ -35,12 +35,14 @@ const UserClaimTitle = styled.h3`
 const LinksWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	grid-column: 1 / 3;
 	width: fill-available;
 
 	@media (min-width: ${BREAKPOINTS.TABLET}) {
 		padding-left: 2rem;
 		grid-column: inherit;
+		align-items: initial;
 	}
 `;
 

@@ -64,8 +64,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 	const defaultSeo = getDefaultSeo(pages);
 
-	console.log(JSON.stringify(contactDomainsPopulated));
-
 	pages.forEach(({ route, redirect, ...data }) => {
 		if (!redirect) {
 			const pageSections = filterEntities(data.sections || [], 'sectionTitle', sections) || [];
