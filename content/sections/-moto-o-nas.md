@@ -1,8 +1,8 @@
 ---
 sectionTitle: MOTO o nas
 titleVisible: false
-align: center
-dark: false
+align: left
+dark: true
 imagesMode: column
 claims:
   - Respektujeme odlišnosti druhých
