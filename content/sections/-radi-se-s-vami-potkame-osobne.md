@@ -1,14 +1,8 @@
 ---
 sectionTitle: Rádi se s Vámi potkáme osobně.
 titleVisible: true
-sectionText: >-
-  <!--StartFragment-->
-
-
-  Nehrajeme si na žádné formality, rádi se s Vámi potkáme u piva, sportu nebo na jiné akci.
-
-
-  <!--EndFragment-->
+sectionText: Nehrajeme si na žádné formality, rádi se s Vámi potkáme u piva,
+  sportu nebo na jiné akci.
 align: left
 dark: false
 images:
