@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import Carousel from 'nuka-carousel';
+import { arrayOf, bool, shape, string } from 'prop-types';
+import ReactMarkdown from 'react-markdown';
 
 import CardList from '../components/CardList';
 import Button from '../components/Button';
@@ -11,7 +12,6 @@ import Text from '../components/Text';
 import { SECTION_ALIGN, POSITION, BREAKPOINTS, IMAGES_MODE } from '../constants';
 import SimpleCard from '../components/SimpleCard';
 import PeopleCard from '../components/PeopleCard';
-import { arrayOf, bool, string } from 'prop-types';
 import {
 	articleShape,
 	claimShape,
@@ -20,6 +20,9 @@ import {
 	contactDomainShape,
 } from '../util/shapes';
 import ContactDomain from './ContactDomain';
+import ImageCarousel from '../components/ImageCarousel';
+import useWindowSize from '../util/useWindowSize';
+import getBreakpointValue from '../util/getBreakpointValue';
 
 const ImageWrapper = styled.img`
 	width: 100%;
@@ -53,55 +56,68 @@ const SectionRenderer = ({
 	people,
 	titleVisible,
 	contactDomains,
-}) => (
-	<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
-		{buttonPosition === POSITION.TOP && buttonLink && (
-			<Link to={buttonLink}>
-				<Button>{buttonText}</Button>
-			</Link>
-		)}
+}) => {
+	const windowSize = useWindowSize();
 
-		{titleVisible && <Heading>{sectionTitle}</Heading>}
-		{/* TODO: Make as markdown */}
-		<Text>{sectionText}</Text>
+	console.log(
+		windowSize,
+		BREAKPOINTS.TABLET,
+		getBreakpointValue(BREAKPOINTS.TABLET),
+		windowSize.width >= getBreakpointValue(BREAKPOINTS.TABLET)
+	);
 
-		<CardList cards={articles} />
+	return (
+		<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
+			{buttonPosition === POSITION.TOP && buttonLink && (
+				<Link to={buttonLink}>
+					<Button>{buttonText}</Button>
+				</Link>
+			)}
 
-		{people && (
-			<PeopleWrapper>
-				{people.map((person) => (
-					<PeopleCard key={person.name} {...person} />
-				))}
-			</PeopleWrapper>
-		)}
+			{titleVisible && <Heading>{sectionTitle}</Heading>}
+			<Text>
+				<ReactMarkdown>{sectionText}</ReactMarkdown>
+			</Text>
 
-		{claims &&
-			claims.map(({ title, text }) => <SimpleCard key={title} heading={title} text={text} />)}
+			<CardList cards={articles} />
 
-		{buttonPosition === POSITION.BOTTOM && buttonLink && (
-			<Link to={buttonLink}>
-				<Button>{buttonText}</Button>
-			</Link>
-		)}
+			{people && (
+				<PeopleWrapper>
+					{people.map((person) => (
+						<PeopleCard key={person.name} {...person} />
+					))}
+				</PeopleWrapper>
+			)}
 
-		{imagesMode === IMAGES_MODE.COLUMN &&
-			images &&
-			images.map(({ image, imageAlt }) => <ImageWrapper key={image} alt={imageAlt} src={image} />)}
+			{claims &&
+				claims.map(({ title, text }) => <SimpleCard key={title} heading={title} text={text} />)}
 
-		{imagesMode === IMAGES_MODE.CAROUSEL && images && (
-			<Carousel autoplay={true} slidesToShow={3}>
-				{images.map(({ image, imageAlt }) => (
+			{buttonPosition === POSITION.BOTTOM && buttonLink && (
+				<Link to={buttonLink}>
+					<Button>{buttonText}</Button>
+				</Link>
+			)}
+
+			{imagesMode === IMAGES_MODE.COLUMN &&
+				images &&
+				images.map(({ image, imageAlt }) => (
 					<ImageWrapper key={image} alt={imageAlt} src={image} />
 				))}
-			</Carousel>
-		)}
 
-		{contactDomains &&
-			contactDomains.map((contactDomain, index) => (
-				<ContactDomain key={index} {...contactDomain} />
-			))}
-	</Section>
-);
+			{imagesMode === IMAGES_MODE.CAROUSEL && (
+				<ImageCarousel
+					images={images}
+					slidesToShow={windowSize.width >= getBreakpointValue(BREAKPOINTS.TABLET) ? 3 : 1}
+				/>
+			)}
+
+			{contactDomains &&
+				contactDomains.map((contactDomain, index) => (
+					<ContactDomain key={index} {...contactDomain} />
+				))}
+		</Section>
+	);
+};
 
 SectionRenderer.propTypes = {
 	sectionTitle: string,
@@ -112,12 +128,12 @@ SectionRenderer.propTypes = {
 	buttonPosition: string,
 	buttonLink: string,
 	buttonText: string,
-	images: arrayOf(imageShape),
+	images: arrayOf(shape(imageShape)),
 	imagesMode: string,
-	articles: arrayOf(articleShape),
-	claims: arrayOf(claimShape),
-	people: arrayOf(personShape),
-	contactDomains: arrayOf(contactDomainShape),
+	articles: arrayOf(shape(articleShape)),
+	claims: arrayOf(shape(claimShape)),
+	people: arrayOf(shape(personShape)),
+	contactDomains: arrayOf(shape(contactDomainShape)),
 };
 
 export default SectionRenderer;

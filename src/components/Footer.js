@@ -69,7 +69,9 @@ const FooterIcon = styled(Icon)`
 `;
 
 const MenuLink = styled.a`
-	position: relative;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
 	text-align: center;
 	text-decoration: none;
 	padding-top: 0.7rem;

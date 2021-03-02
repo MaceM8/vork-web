@@ -2,7 +2,7 @@
 align: center
 hiddenTitle: Kontakt oddíly
 sectionTitle: ' Kontakt'
-titleVisible: true
+titleVisible: false
 sectionText: ''
 dark: false
 imagesMode: column

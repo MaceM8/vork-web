@@ -20,7 +20,7 @@ const PlainImageComponent = styled.img`
 	transition: opacity ${TRANSITION_TIME} ease-in-out;
 `;
 
-const ImageWrapper = styled(Link)`
+const Wrapper = styled(Link)`
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -43,7 +43,7 @@ const ImageWrapper = styled(Link)`
 `;
 
 const RoundImage = ({ height, linkedin, src, ...props }) => (
-	<ImageWrapper height={height} href={linkedin}>
+	<Wrapper height={height} href={linkedin}>
 		{src && (
 			<Fragment>
 				<PlainImageComponent src={src} {...props} />
@@ -52,7 +52,7 @@ const RoundImage = ({ height, linkedin, src, ...props }) => (
 				</ImageOverlay>
 			</Fragment>
 		)}
-	</ImageWrapper>
+	</Wrapper>
 );
 
 RoundImage.propTypes = {
