@@ -9,7 +9,6 @@ sections:
   - Propojujeme lidi, kteří o sobě neví
   - Inspirujte se na našem blogu
   - A samozřejmě děkujeme všem našim partnerům
-  - ' Kontakt'
 ---
 
 Body
