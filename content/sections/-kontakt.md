@@ -1,7 +1,7 @@
 ---
 sectionTitle: Kontakt
 titleVisible: true
-align: center
+align: left
 dark: false
 imagesMode: carousel
 contactDomains:
