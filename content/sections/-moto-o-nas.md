@@ -1,6 +1,6 @@
 ---
 sectionTitle: MOTO o nas
-titleVisible: false
+titleVisible: true
 align: left
 dark: true
 imagesMode: column
