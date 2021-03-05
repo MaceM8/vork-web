@@ -6,4 +6,5 @@ seoTitle: KONTAKT
 seoDescription: KONTAKT
 sections:
   - Kontakt
+  - Vork Consulting s.r.o.
 ---
