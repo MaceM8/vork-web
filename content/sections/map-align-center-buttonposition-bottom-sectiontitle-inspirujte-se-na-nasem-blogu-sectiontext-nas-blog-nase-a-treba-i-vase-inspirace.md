@@ -7,12 +7,14 @@ cards:
     link: https://medium.com/@tom.vodenka/jak-z-v%C3%BDjime%C4%8Dn%C3%A9-firmy-ud%C4%9Blat-pr%C5%AFm%C4%9Brnou-8d6319171262
     image: https://miro.medium.com/max/1496/1*gxcusr3GoNQ8Gur1Nweolw@2x.jpeg
 sectionTitle: Inspirujte se na našem blogu
+titleVisible: true
 sectionText: Náš blog - naše, a třeba i vaše inspirace
 align: center
 dark: true
+imagesMode: carousel
 articles:
   - Jak z výjimečné firmy udělat průměrnou?
-buttonText: S ČÍM POMÁHÁME
-buttonLink: https://www.vork.cz/pomahame
-buttonPosition: bottom
+buttonText: ""
+buttonLink: ""
+buttonPosition: null
 ---
