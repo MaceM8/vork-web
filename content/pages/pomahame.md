@@ -1,5 +1,5 @@
 ---
-route: /POMAHAME
+route: /pomahame
 pageTitle: S ČÍM POMÁHÁME
 pageOrder: 2
 seoTitle: S čím pomáháme

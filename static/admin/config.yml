@@ -72,6 +72,14 @@ collections:
         }
       - { label: 'Text', name: 'sectionText', widget: 'markdown', required: false }
       - {
+          label: 'Velikost textu',
+          name: 'textSize',
+          widget: 'select',
+          default: 'normal',
+          options: ['normal', 'small'],
+          required: false,
+        }
+      - {
           label: 'Zarovnání',
           name: 'align',
           widget: 'select',
@@ -199,13 +207,15 @@ collections:
 
   - name: 'claim'
     label: 'Claimy'
-    description: 'Široké pruhy s claimy'
+    description: 'Široké pruhy s claimy. Odkazy na specifickou sekci zadávejte ve formě "/nazevStranky#idElementu" nebo celou URL na externí webovou stránku'
     folder: 'content/claims'
     create: true
     slug: '{{title}}'
     fields:
       - { label: 'Titulek', name: 'title', widget: 'string' }
       - { label: 'Text', name: 'text', widget: 'text' }
+      - { label: 'Link', name: 'link', widget: 'string', required: false }
+      - { label: 'Obrázek', name: 'image', widget: 'image', required: false }
 
   - name: 'people'
     label: 'Lidé'

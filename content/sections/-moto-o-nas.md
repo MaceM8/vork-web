@@ -1,6 +1,6 @@
 ---
-sectionTitle: MOTO o nas
-titleVisible: true
+sectionTitle: Claimy na stránce O nás
+titleVisible: false
 align: left
 dark: true
 imagesMode: column

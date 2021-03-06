@@ -6,7 +6,9 @@ const getSections = async (graphql) =>
 					node {
 						frontmatter {
 							sectionTitle
+							titleVisible
 							sectionText
+							textSize
 							align
 							buttonText
 							buttonLink

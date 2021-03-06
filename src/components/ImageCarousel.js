@@ -15,7 +15,7 @@ const StyledCarousel = styled(Carousel)`
 	}
 `;
 
-const ImageCarousel = ({ autoplay = true, slidesToShow = 3, images }) => {
+const ImageCarousel = ({ autoplay = false, slidesToShow = 3, images }) => {
 	if (!images) {
 		return null;
 	}

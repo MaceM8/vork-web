@@ -7,6 +7,7 @@ sectionText: "U Potoka 50, Karlík, 25229 IČ - 24148695, DIČ - CZ24148695\r
 
   Zapsáno v obchodním rejstříku, oddíl C, vložka č. 183121 vedená u Městského
   soudu v Praze"
+textSize: small
 align: left
 dark: true
 imagesMode: carousel

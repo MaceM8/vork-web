@@ -42,29 +42,25 @@ const PeopleWrapper = styled.div`
 `;
 
 const SectionRenderer = ({
-	sectionTitle,
-	sectionText,
 	align = '',
-	dark,
-	buttonPosition,
+	articles,
 	buttonLink,
+	buttonPosition,
 	buttonText,
+	claims,
+	contactDomains,
+	dark,
 	images,
 	imagesMode,
-	articles,
-	claims,
 	people,
+	sectionText,
+	sectionTitle,
+	textSize,
 	titleVisible,
-	contactDomains,
 }) => {
 	const windowSize = useWindowSize();
 
-	console.log(
-		windowSize,
-		BREAKPOINTS.TABLET,
-		getBreakpointValue(BREAKPOINTS.TABLET),
-		windowSize.width >= getBreakpointValue(BREAKPOINTS.TABLET)
-	);
+	console.log(sectionTitle);
 
 	return (
 		<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
@@ -75,9 +71,11 @@ const SectionRenderer = ({
 			)}
 
 			{titleVisible && <Heading>{sectionTitle}</Heading>}
-			<Text>
-				<ReactMarkdown>{sectionText}</ReactMarkdown>
-			</Text>
+			{sectionText && (
+				<Text small={textSize === 'small'}>
+					<ReactMarkdown>{sectionText}</ReactMarkdown>
+				</Text>
+			)}
 
 			<CardList cards={articles} />
 
@@ -90,7 +88,7 @@ const SectionRenderer = ({
 			)}
 
 			{claims &&
-				claims.map(({ title, text }) => <SimpleCard key={title} heading={title} text={text} />)}
+				claims.map(({ title, ...props }) => <SimpleCard key={title} heading={title} {...props} />)}
 
 			{buttonPosition === POSITION.BOTTOM && buttonLink && (
 				<Link to={buttonLink}>
@@ -120,20 +118,21 @@ const SectionRenderer = ({
 };
 
 SectionRenderer.propTypes = {
-	sectionTitle: string,
-	titleVisible: bool,
-	sectionText: string,
 	align: string,
-	dark: bool,
-	buttonPosition: string,
+	articles: arrayOf(shape(articleShape)),
 	buttonLink: string,
+	buttonPosition: string,
 	buttonText: string,
+	claims: arrayOf(shape(claimShape)),
+	contactDomains: arrayOf(shape(contactDomainShape)),
+	dark: bool,
 	images: arrayOf(shape(imageShape)),
 	imagesMode: string,
-	articles: arrayOf(shape(articleShape)),
-	claims: arrayOf(shape(claimShape)),
 	people: arrayOf(shape(personShape)),
-	contactDomains: arrayOf(shape(contactDomainShape)),
+	sectionText: string,
+	sectionTitle: string,
+	textSize: string,
+	titleVisible: bool,
 };
 
 export default SectionRenderer;

@@ -11,7 +11,7 @@ const ContentSpaceDivider = styled.div`
 `;
 
 const ContactDomain = ({ title, people, ...props }) => (
-	<ContentSpaceDivider {...props}>
+	<ContentSpaceDivider {...props} id={title}>
 		<Heading>{title}</Heading>
 		{people.map((person) => (
 			<ConnectMedailon key={person.name} {...person} />

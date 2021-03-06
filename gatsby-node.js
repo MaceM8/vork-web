@@ -67,7 +67,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 	pages.forEach(({ route, redirect, ...data }) => {
 		if (!redirect) {
 			const pageSections = filterEntities(data.sections || [], 'sectionTitle', sections) || [];
-			const pageSectionsEnriched = pageSections.map((section) => ({
+			const pageSectionsEnriched = pageSections.map((section = {}) => ({
 				...section,
 				articles: filterEntities(section.articles || [], 'title', articles),
 				claims: filterEntities(section.claims || [], 'title', claims),

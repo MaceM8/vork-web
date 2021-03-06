@@ -1,6 +1,6 @@
 ---
 sectionTitle: Kontakt
-titleVisible: true
+titleVisible: false
 align: left
 dark: false
 imagesMode: carousel
