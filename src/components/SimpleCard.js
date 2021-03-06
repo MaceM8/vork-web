@@ -37,9 +37,7 @@ const StyledImage = styled.img`
 
 const SimpleCard = ({ heading, image, link, text, ...props }) => (
 	<Wrapper {...props} to={link} as={link ? null : 'div'}>
-		{console.log(link ? null : 'div')}
 		<Heading small>{heading}</Heading>
-		{console.log({ heading, image, link, text, ...props })}
 		<Text small colour={PRIMARY}>
 			{text}
 		</Text>

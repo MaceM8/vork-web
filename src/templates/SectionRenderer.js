@@ -60,8 +60,6 @@ const SectionRenderer = ({
 }) => {
 	const windowSize = useWindowSize();
 
-	console.log(sectionTitle);
-
 	return (
 		<Section center={align.toLowerCase() === SECTION_ALIGN.CENTER} dark={dark}>
 			{buttonPosition === POSITION.TOP && buttonLink && (
