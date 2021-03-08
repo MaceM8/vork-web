@@ -26,6 +26,10 @@ const Wrapper = styled(Link)`
   `}
 `;
 
+const TextOnTop = styled(Text)`
+	z-index: 1;
+`;
+
 const StyledImage = styled.img`
 	position: absolute;
 	right: 3rem;
@@ -38,9 +42,9 @@ const StyledImage = styled.img`
 const SimpleCard = ({ heading, image, link, text, ...props }) => (
 	<Wrapper {...props} to={link} as={link ? null : 'div'}>
 		<Heading small>{heading}</Heading>
-		<Text small colour={PRIMARY}>
+		<TextOnTop small colour={PRIMARY}>
 			{text}
-		</Text>
+		</TextOnTop>
 		{image && <StyledImage src={image} alt={image} />}
 	</Wrapper>
 );
