@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import { arrayOf, bool, number, shape, string } from 'prop-types';
 
 const ImageWrapper = styled.img`
-	width: 100%;
+	max-width: 100%;
+	max-height: 10rem;
+	width: auto !important;
+	margin: auto;
 `;
 
 const StyledCarousel = styled(Carousel)`
