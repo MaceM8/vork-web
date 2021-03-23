@@ -1,7 +1,7 @@
 ---
 backLinkText: menu
 privateDataProtectionText: Naše zásady ochrany osobních údajů
-privateDataProtectionFile: uploads/images/ochrana_osobnich_udaju.pdf
+privateDataProtectionFile: uploads/images/ochrana-osobních-údajů.pdf
 networks:
   - icon: medium
     link: https://medium.com/vork-consulting-s-r-o
