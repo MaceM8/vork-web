@@ -14,6 +14,7 @@ dark: true
 imagesMode: carousel
 articles:
   - Jak z výjimečné firmy udělat průměrnou?
+  - Nový článek
 buttonText: ""
 buttonLink: ""
 buttonPosition: null
