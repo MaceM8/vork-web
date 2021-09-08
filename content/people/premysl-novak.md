@@ -10,7 +10,7 @@ description: >
   Výsledek který tímto vzniká je maximální spokojenost jak na straně našich IT specialistů, tak našich klientů, tedy WIN/WIN.
 
   V osobním životě se věnuji rodině, přátelům, focení, snowboardingu, horským túrám a přijímání nových výzev, které nikdy nekončí.
-image: uploads/images/přemysl-novák.jpeg
+image: uploads/images/přemysl-novák.jpg
 linkedin: https://www.linkedin.com/in/premysl-novak-786188169/
 mail: premysl.novak@vork.cz
 phone: +420 776 845 525
