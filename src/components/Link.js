@@ -19,8 +19,8 @@ const Link = styled(GasbyLink)`
 		background: ${PRIMARY};
 	}
 
-	${({ withUnderline }) =>
-		withUnderline &&
+	${({ $withUnderline }) =>
+		$withUnderline &&
 		css`
 			&[aria-current='page'] {
 				&:after {
@@ -29,8 +29,8 @@ const Link = styled(GasbyLink)`
 			}
 		`}
 
-	${({ withUnderline }) =>
-		withUnderline &&
+	${({ $withUnderline }) =>
+		$withUnderline &&
 		hoverMedia`
     &:after {
         width: 100%;

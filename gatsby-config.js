@@ -33,6 +33,13 @@ module.exports = {
 				path: `${__dirname}/src/assets`,
 			},
 		},
+		{
+			resolve: 'gatsby-plugin-google-tagmanager',
+			options: {
+				id: 'GTM-PCL8NVG',
+				enableWebVitalsTracking: true,
+			},
+		},
 		// NOTE: Netlify CMS content
 		{
 			resolve: `gatsby-source-filesystem`,
@@ -90,13 +97,6 @@ module.exports = {
 				path: `${__dirname}/content/webConfig`,
 			},
 		},
-		// {
-		//   resolve: `gatsby-source-medium`,
-		//   options: {
-		//     username: `@tom.vodenka`,
-		//     limit: 3,
-		//   },
-		// },
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
 		{
@@ -110,17 +110,6 @@ module.exports = {
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
 		`gatsby-plugin-offline`,
-		// {
-		//   resolve: "gatsby-plugin-netlify-cms",
-		//   options: {
-		//     modulePath: `${__dirname}/src/cms/cms.js`,
-		//   },
-		// },
-		// {
-		//   resolve: "gatsby-source-netlify-cms",
-		//   options: createPluginOptions(config)
-		// },
-		// ...createPluginPaths(config),
 		{
 			resolve: `gatsby-plugin-netlify-cms`,
 			options: {

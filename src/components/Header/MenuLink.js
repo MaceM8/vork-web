@@ -18,12 +18,12 @@ const MenuLink = ({ to, href, children }) => (
 	<LinkBlock>
 		<LinkWrapper>
 			{!href && to && (
-				<Link withUnderline to={to}>
+				<Link $withUnderline to={to}>
 					{children}
 				</Link>
 			)}
 			{href && (
-				<ExternalLink withUnderline uppercase href={href}>
+				<ExternalLink $withUnderline uppercase href={href}>
 					{children}
 				</ExternalLink>
 			)}
