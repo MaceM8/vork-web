@@ -25,7 +25,7 @@ backend:
 collections:
   - name: 'pages'
     label: 'Stránky'
-    description: 'Seznam všech stránek webu. Každá stránka definuje používané sekce a atributy pro SEO. By specifying redirect attribute, the page is not created and simply redirects to provided URL.'
+    description: 'Seznam všech stránek webu. Každá stránka definuje používané sekce a atributy pro SEO. Vyplněním Redirect atributu zajistíte, že se nevytvoří stránka, ale provede se přesměrování na specifikovanou URL'
     folder: 'content/pages'
     create: true
     slug: '{{route}}'

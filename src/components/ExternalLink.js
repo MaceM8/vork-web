@@ -29,8 +29,8 @@ const StyledAnchor = styled.a`
 		background: ${PRIMARY};
 	}
 
-	${({ withUnderline }) =>
-		withUnderline &&
+	${({ $withUnderline }) =>
+		$withUnderline &&
 		hoverMedia`
     &:after {
         width: 100%;
