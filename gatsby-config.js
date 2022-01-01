@@ -34,6 +34,12 @@ module.exports = {
 			},
 		},
 		{
+			resolve: 'gatsby-plugin-cookiebot',
+			options: {
+				cookiebotId: '1cfb8790-d0cf-4c76-b9e4-b8bddcf13d05', // Required. Site's Cookiebot ID.
+			},
+		},
+		{
 			resolve: 'gatsby-plugin-google-tagmanager',
 			options: {
 				id: 'GTM-PCL8NVG',
