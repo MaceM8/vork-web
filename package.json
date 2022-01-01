@@ -5,6 +5,7 @@
   "description": "Landig web for Vork",
   "version": "2.0.0",
   "author": "Martin Macháček <martin.machacek93@gmail.com>",
+  "engines" : { "node" : ">=0.14" },
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
