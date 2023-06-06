@@ -16,7 +16,7 @@ slug:
 local_backend: true
 backend:
   name: git-gateway
-  branch: develop # Branch to update (defaults to master)
+  branch: main # Branch to update (defaults to master)
   site_domain: https://vork-test.netlify.app
   # accept_roles:
   #   - admin
